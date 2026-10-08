@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, ArrowRight, CheckCircle2, Clock, Calendar, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './CoursesPage.module.css';
 
@@ -19,7 +19,6 @@ const CoursesPage = () => {
     <div className={styles.container}>
       {/* Header */}
       <div className={styles.header}>
-        <span className="mono-accent">// DEGREE ROADMAP & ILP SHELL</span>
         <h1 className={`serif-header ${styles.title}`}>Individual Learning Plan (ILP) Courses</h1>
         <p className={styles.subtitle}>
           Comprehensive course progression for the Computer Science B.S. program at CSUMB.
@@ -74,22 +73,13 @@ const CoursesPage = () => {
 
                 <div className={styles.statusGroup}>
                   {isCompleted && (
-                    <span className="pill">
-                      <CheckCircle2 size={12} />
-                      <span>COMPLETED</span>
-                    </span>
+                    <span className="pill">COMPLETED</span>
                   )}
                   {isCurrent && (
-                    <span className="pill pill-gold">
-                      <Clock size={12} />
-                      <span>IN PROGRESS</span>
-                    </span>
+                    <span className="pill pill-gold">IN PROGRESS</span>
                   )}
                   {!isCompleted && !isCurrent && (
-                    <span className="pill pill-csumb">
-                      <Calendar size={12} />
-                      <span>PLANNED</span>
-                    </span>
+                    <span className="pill pill-csumb">PLANNED</span>
                   )}
                 </div>
               </div>
@@ -111,10 +101,9 @@ const CoursesPage = () => {
                   <span>Explore Course Page</span>
                   <ArrowRight size={14} />
                 </Link>
-                {isCurrent && (
+                {course.code === 'CST 349' && (
                   <span className={styles.specialBadge}>
-                    <Sparkles size={12} />
-                    <span>Includes Expert Interview</span>
+                    Includes Expert Interview
                   </span>
                 )}
               </div>

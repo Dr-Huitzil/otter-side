@@ -1,17 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  GraduationCap,
-  Target,
-  BookOpen,
-  Award,
-  ArrowRight,
-  ExternalLink,
-  Shield,
-  Layers,
-  Terminal,
-  Sparkles
-} from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { studentProfile } from '@/data/studentProfile';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './HomePage.module.css';
@@ -44,7 +33,6 @@ const HomePage = () => {
           </div>
 
           <div className={styles.institutionalMeta}>
-            <span className="mono-accent">// ACADEMIC REPOSITORY</span>
             <h2 className={styles.schoolName}>{studentProfile.school}</h2>
             <p className={styles.schoolProgram}>
               {studentProfile.college} &bull; {studentProfile.program}
@@ -53,8 +41,7 @@ const HomePage = () => {
 
           <div className={styles.brandRightBadge}>
             <span className="pill pill-csumb">
-              <Shield size={13} />
-              <span>CST 499 CAPSTONE READY</span>
+              CST 499 CAPSTONE READY
             </span>
           </div>
         </div>
@@ -65,14 +52,8 @@ const HomePage = () => {
         <div className={styles.heroGrid}>
           <div className={styles.heroInfo}>
             <div className={styles.statusPills}>
-              <span className="pill">
-                <Terminal size={12} />
-                <span>ILP PORTFOLIO</span>
-              </span>
-              <span className="pill pill-gold">
-                <GraduationCap size={12} />
-                <span>CURRENT TERM ACTIVE</span>
-              </span>
+              <span className="pill">ILP PORTFOLIO</span>
+              <span className="pill pill-gold">FALL TERM 1 ACTIVE</span>
             </div>
 
             <h1 className={`serif-header serif-glow ${styles.studentName}`}>
@@ -98,8 +79,8 @@ const HomePage = () => {
                 <ArrowRight size={15} />
               </Link>
               <Link to="/courses" className="btn-hud btn-secondary">
-                <BookOpen size={15} />
                 <span>All {csumbCourses.length} Courses</span>
+                <ArrowRight size={15} />
               </Link>
               <a
                 href={studentProfile.links.portfolio}
@@ -154,7 +135,6 @@ const HomePage = () => {
       {currentCourses.length > 0 && (
         <section className={styles.currentSection} id="current-courses">
           <div className={styles.sectionHeading}>
-            <span className="mono-accent">// ACTIVE ENROLLMENT</span>
             <h2 className={`serif-header ${styles.sectionTitle}`}>Current Term Courses (In Progress)</h2>
             <p className={styles.sectionSubtitle}>
               Upper-division courses currently in progress for Fall Term 1. Click any course to view official
@@ -168,10 +148,7 @@ const HomePage = () => {
                 <div className={styles.currentCardTop}>
                   <div className={styles.currentCodeRow}>
                     <span className={styles.currentCourseCode}>{course.code}</span>
-                    <span className="pill pill-gold">
-                      <Sparkles size={11} />
-                      <span>IN PROGRESS</span>
-                    </span>
+                    <span className="pill pill-gold">CURRENT TERM</span>
                   </div>
                   <span className={styles.currentUnits}>{course.units} Units &bull; {course.term}</span>
                 </div>
@@ -182,7 +159,6 @@ const HomePage = () => {
                 {/* Special highlight for CST 349 (Interview Report) */}
                 {course.code === 'CST 349' && course.interviewReport && (
                   <div className={styles.interviewHighlightBox}>
-                    <Award size={18} className={styles.highlightIcon} />
                     <div>
                       <h4 className={styles.highlightHeading}>Industry Expert Interview Report</h4>
                       <p className={styles.highlightText}>
@@ -195,7 +171,6 @@ const HomePage = () => {
                 {/* Special highlight for CST 300 (GWAR Portfolio) */}
                 {course.code === 'CST 300' && course.finalProject && (
                   <div className={styles.gwarHighlightBox}>
-                    <Award size={18} className={styles.highlightIconTeal} />
                     <div>
                       <h4 className={styles.highlightHeadingTeal}>GWAR Graduation Writing Requirement</h4>
                       <p className={styles.highlightText}>
@@ -220,7 +195,6 @@ const HomePage = () => {
       {/* Program Description & Outcomes (MLOs) */}
       <section className={styles.outcomesSection} id="outcomes">
         <div className={styles.sectionHeading}>
-          <span className="mono-accent">// DEGREE SPECIFICATION</span>
           <h2 className={`serif-header ${styles.sectionTitle}`}>Program Learning Outcomes</h2>
           <p className={styles.sectionSubtitle}>
             Cal State Monterey Bay Computer Science Major Learning Outcomes (MLOs) demonstrated throughout
@@ -233,7 +207,6 @@ const HomePage = () => {
             <div key={mlo.id} className={`${styles.mloCard} hud-surface`}>
               <div className={styles.mloHeader}>
                 <span className="pill">{mlo.code}</span>
-                <Layers size={18} className={styles.mloIcon} />
               </div>
               <h3 className={styles.mloTitle}>{mlo.title}</h3>
               <p className={styles.mloDesc}>{mlo.description}</p>
@@ -245,7 +218,6 @@ const HomePage = () => {
       {/* Goals: Academic & Career */}
       <section className={styles.goalsSection} id="goals">
         <div className={styles.sectionHeading}>
-          <span className="mono-accent">// TRAJECTORY</span>
           <h2 className={`serif-header ${styles.sectionTitle}`}>Academic & Career Goals</h2>
           <p className={styles.sectionSubtitle}>
             Personal and professional milestones defined in CST 349 Proseminar guiding progression through graduation.
@@ -256,7 +228,6 @@ const HomePage = () => {
           {/* Academic Goals Card */}
           <div className={`${styles.goalCard} hud-surface`}>
             <div className={styles.goalHeader}>
-              <GraduationCap size={24} className={styles.goalIconTeal} />
               <h3 className={styles.goalTitle}>Academic Milestones</h3>
             </div>
             <ul className={styles.goalList}>
@@ -272,7 +243,6 @@ const HomePage = () => {
           {/* Career Goals Card */}
           <div className={`${styles.goalCard} hud-surface`}>
             <div className={styles.goalHeader}>
-              <Target size={24} className={styles.goalIconGold} />
               <h3 className={styles.goalTitle}>Professional & Career Objectives</h3>
             </div>
             <ul className={styles.goalList}>
@@ -291,7 +261,6 @@ const HomePage = () => {
       <section className={styles.roadmapTeaser}>
         <div className={styles.teaserCard}>
           <div className={styles.teaserContent}>
-            <span className="mono-accent">// ILP COURSE SEQUENCE</span>
             <h3 className={`serif-header ${styles.teaserTitle}`}>
               Complete Upper-Division Degree Roadmap
             </h3>

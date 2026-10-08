@@ -2,14 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   ExternalLink,
-  BookOpen,
-  GraduationCap,
-  Compass,
   ChevronDown,
   Menu,
-  X,
-  Sparkles,
-  Layers
+  X
 } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './Navbar.module.css';
@@ -66,8 +61,7 @@ const Navbar = () => {
             to="/"
             className={`${styles.navLink} ${isActive('/') && location.pathname === '/' ? styles.active : ''}`}
           >
-            <Compass size={16} />
-            <span>Home</span>
+            <span>HOME</span>
           </Link>
 
           {/* Courses Dropdown (Hover + Click) */}
@@ -84,8 +78,7 @@ const Navbar = () => {
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
             >
-              <BookOpen size={16} />
-              <span>Courses</span>
+              <span>COURSES</span>
               <ChevronDown
                 size={14}
                 className={`${styles.chevron} ${dropdownOpen ? styles.chevronRotated : ''}`}
@@ -96,7 +89,7 @@ const Navbar = () => {
             {dropdownOpen && (
               <div className={`${styles.dropdownMenu} hud-surface`}>
                 <div className={styles.dropdownHeader}>
-                  <span className="mono-accent">// DEGREE PATHWAY NAVIGATION</span>
+                  <span className={styles.dropdownHeadingText}>DEGREE PATHWAY DIRECTORY</span>
                   <Link to="/courses" className={styles.allCoursesLink}>
                     View All Overview &rarr;
                   </Link>
@@ -106,7 +99,6 @@ const Navbar = () => {
                   {/* Current Active Courses */}
                   <div className={styles.dropdownCol}>
                     <div className={styles.colHeadingRow}>
-                      <Sparkles size={13} className={styles.sparkleIcon} />
                       <span className={styles.colHeading}>Current Term (Active)</span>
                     </div>
                     <div className={styles.courseItemsList}>
@@ -129,7 +121,6 @@ const Navbar = () => {
                   {/* Other / Planned Courses */}
                   <div className={styles.dropdownCol}>
                     <div className={styles.colHeadingRow}>
-                      <Layers size={13} className={styles.plannedIcon} />
                       <span className={styles.colHeading}>Degree Pathway</span>
                     </div>
                     <div className={styles.courseItemsGrid}>
@@ -149,8 +140,7 @@ const Navbar = () => {
 
                 <div className={styles.dropdownFooter}>
                   <Link to="/courses/cst-349" className={styles.footerHighlightLink}>
-                    <GraduationCap size={14} />
-                    <span>Jump to CST 349 Industry Expert Interview Report</span>
+                    <span>Jump to CST 349 Industry Expert Interview Report &rarr;</span>
                   </Link>
                 </div>
               </div>
@@ -162,8 +152,7 @@ const Navbar = () => {
             to="/courses/cst-349"
             className={`${styles.navLink} ${location.pathname.includes('cst-349') ? styles.active : ''}`}
           >
-            <GraduationCap size={16} />
-            <span>CST 349 (Report)</span>
+            <span>CST 349 (REPORT)</span>
           </Link>
 
           {/* External Bridge back to Personal Portfolio */}
@@ -197,8 +186,7 @@ const Navbar = () => {
             className={`${styles.mobileNavLink} ${isActive('/') && location.pathname === '/' ? styles.active : ''}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            <Compass size={18} />
-            <span>Home</span>
+            <span>HOME</span>
           </Link>
 
           {/* Expandable Courses Accordion on Mobile */}
@@ -208,10 +196,9 @@ const Navbar = () => {
               className={styles.mobileAccordionBtn}
               onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
             >
-              <div className={styles.mobileAccordionLeft}>
-                <BookOpen size={18} />
-                <span>All Courses ({csumbCourses.length})</span>
-              </div>
+              <span className={styles.mobileAccordionLeft}>
+                ALL COURSES ({csumbCourses.length})
+              </span>
               <ChevronDown
                 size={16}
                 className={`${styles.chevron} ${mobileCoursesOpen ? styles.chevronRotated : ''}`}
@@ -250,8 +237,7 @@ const Navbar = () => {
             className={`${styles.mobileNavLink} ${location.pathname.includes('cst-349') ? styles.active : ''}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            <GraduationCap size={18} />
-            <span>CST 349 Proseminar & Report</span>
+            <span>CST 349 PROSEMINAR & REPORT</span>
           </Link>
 
           <a

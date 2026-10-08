@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, ShieldCheck, GitBranch, Briefcase, Globe } from 'lucide-react';
+import { ExternalLink, GitBranch, Briefcase, Globe } from 'lucide-react';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -109,7 +109,6 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} Ivan Alier-Reyes &bull; School of Computing & Design &bull; CSUMB
           </div>
           <div className={styles.complianceNotice}>
-            <ShieldCheck size={14} className={styles.shieldIcon} />
             <span>Satisfies CST 349 / CST 499 Capstone ILP Portfolio Specification</span>
           </div>
         </div>

@@ -3,18 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import {
   ArrowLeft,
   ArrowRight,
-  BookOpen,
-  Calendar,
-  CheckCircle2,
-  Clock,
-  FileText,
-  Award,
-  Layers,
-  Sparkles,
-  ExternalLink,
-  UserCheck,
-  Building,
-  CalendarDays
+  ExternalLink
 } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './CourseDetailPage.module.css';
@@ -63,26 +52,17 @@ const CourseDetailPage = () => {
       {/* Main Course Header */}
       <div className={`${styles.headerCard} hud-surface`}>
         <div className={styles.metaRow}>
-          <span className="mono-accent">// {course.term}</span>
+          <span className={styles.termLabel}>{course.term}</span>
           <div className={styles.badges}>
             <span className="pill">{course.units} Units</span>
             {isCompleted && (
-              <span className="pill">
-                <CheckCircle2 size={12} />
-                <span>COMPLETED</span>
-              </span>
+              <span className="pill">COMPLETED</span>
             )}
             {isCurrent && (
-              <span className="pill pill-gold">
-                <Clock size={12} />
-                <span>IN PROGRESS</span>
-              </span>
+              <span className="pill pill-gold">IN PROGRESS</span>
             )}
             {!isCompleted && !isCurrent && (
-              <span className="pill pill-csumb">
-                <Calendar size={12} />
-                <span>PLANNED</span>
-              </span>
+              <span className="pill pill-csumb">PLANNED</span>
             )}
           </div>
         </div>
@@ -94,8 +74,7 @@ const CourseDetailPage = () => {
         <div className={styles.outcomesList}>
           {course.outcomesMatched.map((outcome, idx) => (
             <span key={idx} className={styles.outcomeBadge}>
-              <Layers size={13} />
-              <span>{outcome}</span>
+              {outcome}
             </span>
           ))}
         </div>
@@ -104,7 +83,6 @@ const CourseDetailPage = () => {
       {/* Course Description Section */}
       <section className={`${styles.contentCard} hud-surface`}>
         <div className={styles.sectionHeader}>
-          <BookOpen size={20} className={styles.sectionIcon} />
           <h2 className={styles.sectionHeading}>Official Catalog Course Description</h2>
         </div>
         <p className={styles.descriptionText}>{course.description}</p>
@@ -126,7 +104,7 @@ const CourseDetailPage = () => {
         <section className={`${styles.interviewCard} hud-surface`}>
           <div className={styles.interviewHeader}>
             <div className={styles.interviewTitleGroup}>
-              <span className="pill pill-gold">RUBRIC REQUIREMENT // 7 PTS</span>
+              <span className="pill pill-gold">PROSEMINAR DELIVERABLE</span>
               <h2 className={`serif-header ${styles.interviewTitle}`}>
                 Industry Expert Interview Report
               </h2>
@@ -135,27 +113,23 @@ const CourseDetailPage = () => {
                 practices, career pathways, and technical competencies.
               </p>
             </div>
-            <Award size={36} className={styles.interviewIcon} />
           </div>
 
           {/* Interview Details Grid */}
           <div className={styles.interviewMetaGrid}>
             <div className={styles.metaItem}>
-              <UserCheck size={16} className={styles.metaIcon} />
               <div>
                 <span className={styles.metaLabel}>Role / Focus</span>
                 <span className={styles.metaValue}>{course.interviewReport.role}</span>
               </div>
             </div>
             <div className={styles.metaItem}>
-              <Building size={16} className={styles.metaIcon} />
               <div>
                 <span className={styles.metaLabel}>Domain</span>
                 <span className={styles.metaValue}>{course.interviewReport.company}</span>
               </div>
             </div>
             <div className={styles.metaItem}>
-              <CalendarDays size={16} className={styles.metaIcon} />
               <div>
                 <span className={styles.metaLabel}>Interview Term</span>
                 <span className={styles.metaValue}>{course.interviewReport.date}</span>
@@ -197,7 +171,6 @@ const CourseDetailPage = () => {
       {/* Final Project / Coursework Artifacts Section */}
       <section className={`${styles.projectCard} hud-surface`}>
         <div className={styles.sectionHeader}>
-          <FileText size={20} className={styles.sectionIcon} />
           <h2 className={styles.sectionHeading}>Final Course Project & Artifacts</h2>
         </div>
 
@@ -206,7 +179,7 @@ const CourseDetailPage = () => {
             <div className={styles.projectMain}>
               <div className={styles.projectStatusRow}>
                 <h3 className={styles.projectTitle}>{course.finalProject.title}</h3>
-                <span className={`pill ${course.finalProject.status === 'Completed' ? '' : 'pill-csumb'}`}>
+                <span className={`pill ${course.finalProject.status === 'Completed' ? '' : 'pill-gold'}`}>
                   {course.finalProject.status.toUpperCase()}
                 </span>
               </div>
@@ -218,7 +191,6 @@ const CourseDetailPage = () => {
               <div className={styles.artifactsGrid}>
                 {course.finalProject.artifacts.map((art, idx) => (
                   <div key={idx} className={styles.artifactBox}>
-                    <Sparkles size={16} className={styles.artifactIcon} />
                     <div>
                       <span className={styles.artifactName}>{art.name}</span>
                       <span className={styles.artifactType}>Documented Course Artifact</span>
@@ -228,7 +200,6 @@ const CourseDetailPage = () => {
               </div>
             ) : (
               <div className={styles.pendingBox}>
-                <Clock size={16} />
                 <span>
                   Project artifact will be documented and published upon completing this course sequence.
                 </span>

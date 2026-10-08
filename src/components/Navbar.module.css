@@ -161,6 +161,14 @@
   padding-bottom: 12px;
 }
 
+.dropdownHeadingText {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--accent-teal-bright);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
 .allCoursesLink {
   font-family: 'Fira Code', monospace;
   font-size: 0.76rem;
