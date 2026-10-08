@@ -100,9 +100,9 @@ const HomePage = () => {
             <div className={styles.avatarFrame}>
               <div className={styles.avatarGraphic}>
                 <img
-                  src="/quetzal.svg"
-                  alt="Quetzal Symbol - Ivan Alier-Reyes"
-                  className={styles.quetzalImg}
+                  src="/ivan-profile.jpg"
+                  alt="Ivan Alier-Reyes"
+                  className={styles.profileImg}
                 />
               </div>
               <div className={styles.profileBadge}>

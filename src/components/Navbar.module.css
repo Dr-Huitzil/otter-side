@@ -128,17 +128,16 @@
 .dropdownMenu {
   position: absolute;
   top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-40%);
-  width: 840px;
-  max-width: calc(100vw - 32px);
+  right: -80px;
+  width: 760px;
+  max-width: calc(100vw - 40px);
   background: rgba(10, 16, 11, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(82, 183, 136, 0.35);
   border-radius: 16px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(82, 183, 136, 0.15);
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -187,8 +186,8 @@
 
 .dropdownGrid {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 24px;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
 }
 
 .dropdownCol {
