@@ -1,0 +1,185 @@
+/* src/pages/CoursesPage.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.header {
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 2.8rem;
+  margin: 8px 0 12px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-sans-slate);
+  max-width: 800px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.filterBar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-sans-slate);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  background: rgba(82, 183, 136, 0.1);
+  color: var(--text-serif-cream);
+  border-color: rgba(82, 183, 136, 0.3);
+}
+
+.activeFilter {
+  background: rgba(82, 183, 136, 0.2);
+  color: var(--accent-teal-bright);
+  border-color: var(--accent-teal-bright);
+}
+
+/* Grid */
+.courseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 28px;
+}
+
+.courseCard {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.currentCardHighlight {
+  border-color: rgba(212, 163, 115, 0.5);
+  box-shadow: 0 0 30px rgba(212, 163, 115, 0.15);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.codeGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.courseCode {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-teal-bright);
+}
+
+.courseUnits {
+  font-size: 0.78rem;
+  color: var(--text-sans-slate);
+  font-family: 'Fira Code', monospace;
+}
+
+.courseTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  color: var(--text-serif-cream);
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.termLabel {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.courseDesc {
+  font-size: 0.9rem;
+  color: var(--text-sans-slate);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  flex: 1;
+}
+
+.projectSection {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+}
+
+.projectLabel {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: var(--accent-teal-bright);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.projectTitle {
+  font-size: 0.88rem;
+  color: var(--text-serif-cream);
+  margin: 0;
+  font-weight: 500;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  margin-top: auto;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: var(--accent-teal-bright);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cardLink:hover {
+  transform: translateX(4px);
+}
+
+.specialBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--accent-gold);
+  font-family: 'Fira Code', monospace;
+}
+
+@media (max-width: 600px) {
+  .courseGrid {
+    grid-template-columns: 1fr;
+  }
+}
