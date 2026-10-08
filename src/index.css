@@ -94,7 +94,6 @@ body::before {
   mix-blend-mode: var(--bg-texture-blend-mode);
   pointer-events: none;
   z-index: 0;
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #root {
@@ -127,18 +126,19 @@ body::before {
   text-transform: uppercase;
 }
 
-/* HUD Surface Utility */
+/* HUD Surface Utility - Optimized for GPU & Frame Rate:
+ * Removed expensive per-card backdrop-filter to prevent layer explosion across 12+ cards.
+ * Uses opaque deep-glass foundation with soft inner vignette instead.
+ */
 .hud-surface {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-    var(--glass-bg-soft);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+    rgba(14, 22, 15, 0.88);
   border: 1px solid rgba(82, 183, 136, 0.25);
   border-radius: var(--hud-radius);
   box-shadow:
     var(--glass-glow-teal),
-    0 20px 50px rgba(0, 0, 0, 0.5);
+    0 16px 40px rgba(0, 0, 0, 0.55);
   transition: var(--transition-smooth);
 }
 
@@ -248,4 +248,25 @@ a {
 
 a:hover {
   color: var(--accent-teal-bright);
+}
+
+/* Accessibility: WCAG 2.1 Focus-Visible Outlines
+ * Solves the clip-path bounding-box outline truncation
+ */
+:focus-visible {
+  outline: 2px solid var(--accent-teal-bright);
+  outline-offset: 3px;
+}
+
+.btn-hud:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 4px;
+  box-shadow: 0 0 16px rgba(82, 183, 136, 0.5);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent-teal-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
 }

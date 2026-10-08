@@ -1,15 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
-import { studentProfile } from '@/data/studentProfile';
-import { csumbCourses } from '@/data/csumbCourses';
-import styles from './HomePage.module.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { studentProfile } from "@/data/studentProfile";
+import { csumbCourses } from "@/data/csumbCourses";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
-  const currentCourses = csumbCourses.filter((c) => c.status === 'In Progress');
-  const completedCount = csumbCourses.filter((c) => c.status === 'Completed').length;
-  const inProgressCount = csumbCourses.filter((c) => c.status === 'In Progress').length;
-  const plannedCount = csumbCourses.filter((c) => c.status === 'Planned').length;
+  const currentCourses = csumbCourses.filter((c) => c.status === "In Progress");
+  const completedCount = csumbCourses.filter(
+    (c) => c.status === "Completed",
+  ).length;
+  const inProgressCount = csumbCourses.filter(
+    (c) => c.status === "In Progress",
+  ).length;
+  const plannedCount = csumbCourses.filter(
+    (c) => c.status === "Planned",
+  ).length;
 
   return (
     <div className={styles.homeContainer}>
@@ -38,12 +44,6 @@ const HomePage = () => {
               {studentProfile.college} &bull; {studentProfile.program}
             </p>
           </div>
-
-          <div className={styles.brandRightBadge}>
-            <span className="pill pill-csumb">
-              CST 499 CAPSTONE READY
-            </span>
-          </div>
         </div>
       </section>
 
@@ -64,9 +64,7 @@ const HomePage = () => {
               {studentProfile.title}
             </p>
 
-            <p className={styles.studentBio}>
-              {studentProfile.bio}
-            </p>
+            <p className={styles.studentBio}>{studentProfile.bio}</p>
 
             {/* Quick Action Buttons */}
             <div className={styles.heroActions}>
@@ -102,13 +100,20 @@ const HomePage = () => {
                 <img
                   src="/ivan-profile.jpg"
                   alt="Ivan Alier-Reyes"
+                  width={140}
+                  height={140}
                   className={styles.profileImg}
+                  fetchPriority="high"
                 />
               </div>
               <div className={styles.profileBadge}>
                 <span className={styles.badgeName}>{studentProfile.name}</span>
-                <span className={styles.badgeId}>CSUMB Student ID Artifact</span>
-                <span className={styles.badgeCohort}>{studentProfile.cohort}</span>
+                <span className={styles.badgeId}>
+                  CSUMB Student ID Artifact
+                </span>
+                <span className={styles.badgeCohort}>
+                  {studentProfile.cohort}
+                </span>
               </div>
             </div>
 
@@ -135,32 +140,44 @@ const HomePage = () => {
       {currentCourses.length > 0 && (
         <section className={styles.currentSection} id="current-courses">
           <div className={styles.sectionHeading}>
-            <h2 className={`serif-header ${styles.sectionTitle}`}>Current Term Courses (In Progress)</h2>
+            <h2 className={`serif-header ${styles.sectionTitle}`}>
+              Current Term Courses (In Progress)
+            </h2>
             <p className={styles.sectionSubtitle}>
-              Upper-division courses currently in progress for Fall Term 1. Click any course to view official
-              catalog descriptions, coursework objectives, and ongoing deliverables.
+              Upper-division courses currently in progress for Fall Term 1.
+              Click any course to view official catalog descriptions, coursework
+              objectives, and ongoing deliverables.
             </p>
           </div>
 
           <div className={styles.currentCoursesGrid}>
             {currentCourses.map((course) => (
-              <div key={course.code} className={`${styles.currentCourseCard} hud-surface`}>
+              <div
+                key={course.code}
+                className={`${styles.currentCourseCard} hud-surface`}
+              >
                 <div className={styles.currentCardTop}>
                   <div className={styles.currentCodeRow}>
-                    <span className={styles.currentCourseCode}>{course.code}</span>
+                    <span className={styles.currentCourseCode}>
+                      {course.code}
+                    </span>
                     <span className="pill pill-gold">CURRENT TERM</span>
                   </div>
-                  <span className={styles.currentUnits}>{course.units} Units &bull; {course.term}</span>
+                  <span className={styles.currentUnits}>
+                    {course.units} Units &bull; {course.term}
+                  </span>
                 </div>
 
                 <h3 className={styles.currentCourseTitle}>{course.title}</h3>
                 <p className={styles.currentCourseDesc}>{course.description}</p>
 
                 {/* Special highlight for CST 349 (Interview Report) */}
-                {course.code === 'CST 349' && course.interviewReport && (
+                {course.code === "CST 349" && course.interviewReport && (
                   <div className={styles.interviewHighlightBox}>
                     <div>
-                      <h4 className={styles.highlightHeading}>Industry Expert Interview Report</h4>
+                      <h4 className={styles.highlightHeading}>
+                        Industry Expert Interview Report
+                      </h4>
                       <p className={styles.highlightText}>
                         {course.interviewReport.summary}
                       </p>
@@ -169,12 +186,15 @@ const HomePage = () => {
                 )}
 
                 {/* Special highlight for CST 300 (GWAR Portfolio) */}
-                {course.code === 'CST 300' && course.finalProject && (
+                {course.code === "CST 300" && course.finalProject && (
                   <div className={styles.gwarHighlightBox}>
                     <div>
-                      <h4 className={styles.highlightHeadingTeal}>GWAR Graduation Writing Requirement</h4>
+                      <h4 className={styles.highlightHeadingTeal}>
+                        GWAR Graduation Writing Requirement
+                      </h4>
                       <p className={styles.highlightText}>
-                        {course.finalProject.title} — {course.finalProject.description}
+                        {course.finalProject.title} —{" "}
+                        {course.finalProject.description}
                       </p>
                     </div>
                   </div>
@@ -195,10 +215,13 @@ const HomePage = () => {
       {/* Program Description & Outcomes (MLOs) */}
       <section className={styles.outcomesSection} id="outcomes">
         <div className={styles.sectionHeading}>
-          <h2 className={`serif-header ${styles.sectionTitle}`}>Program Learning Outcomes</h2>
+          <h2 className={`serif-header ${styles.sectionTitle}`}>
+            Program Learning Outcomes
+          </h2>
           <p className={styles.sectionSubtitle}>
-            Cal State Monterey Bay Computer Science Major Learning Outcomes (MLOs) demonstrated throughout
-            the upper-division curriculum and evaluated in the CST 499 Capstone.
+            Cal State Monterey Bay Computer Science Major Learning Outcomes
+            (MLOs) demonstrated throughout the upper-division curriculum and
+            evaluated in the CST 499 Capstone.
           </p>
         </div>
 
@@ -218,9 +241,12 @@ const HomePage = () => {
       {/* Goals: Academic & Career */}
       <section className={styles.goalsSection} id="goals">
         <div className={styles.sectionHeading}>
-          <h2 className={`serif-header ${styles.sectionTitle}`}>Academic & Career Goals</h2>
+          <h2 className={`serif-header ${styles.sectionTitle}`}>
+            Academic & Career Goals
+          </h2>
           <p className={styles.sectionSubtitle}>
-            Personal and professional milestones defined in CST 349 Proseminar guiding progression through graduation.
+            Personal and professional milestones defined in CST 349 Proseminar
+            guiding progression through graduation.
           </p>
         </div>
 
@@ -243,7 +269,9 @@ const HomePage = () => {
           {/* Career Goals Card */}
           <div className={`${styles.goalCard} hud-surface`}>
             <div className={styles.goalHeader}>
-              <h3 className={styles.goalTitle}>Professional & Career Objectives</h3>
+              <h3 className={styles.goalTitle}>
+                Professional & Career Objectives
+              </h3>
             </div>
             <ul className={styles.goalList}>
               {studentProfile.goals.career.map((goal, idx) => (
@@ -265,8 +293,9 @@ const HomePage = () => {
               Complete Upper-Division Degree Roadmap
             </h3>
             <p className={styles.teaserDesc}>
-              Every planned course has an established ILP shell ready for continuous documentation, syllabus
-              outcomes, and project artifacts through CST 499 Capstone.
+              Every planned course has an established ILP shell ready for
+              continuous documentation, syllabus outcomes, and project artifacts
+              through CST 499 Capstone.
             </p>
           </div>
           <Link to="/courses" className="btn-hud">
