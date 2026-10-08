@@ -2,11 +2,11 @@
 
 export const studentProfile = {
   name: "Ivan Alier-Reyes",
-  title: "Computer Science Undergraduate // IT & Security Specialist",
+  title: "Computer Science Undergraduate | IT & Security Specialist",
   school: "California State University, Monterey Bay (CSUMB)",
   college: "College of Science — School of Computing & Design",
   program: "Bachelor of Science in Computer Science (Online Degree Completion)",
-  cohort: "Cohort Pathway // CST 349 to CST 499",
+  cohort: "Cohort Pathway: CST 349 to CST 499",
   email: "ialierreyes@csumb.edu",
   links: {
     portfolio: "https://willofhuitzil.com",

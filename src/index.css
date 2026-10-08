@@ -44,6 +44,11 @@
       100% 8px, 100% calc(100% - 8px),
       calc(100% - 8px) 100%, 8px 100%,
       0% calc(100% - 8px), 0% 8px);
+  /* --- Ambient Texture Tokens --- */
+  --bg-texture-url: url('/textures/feathers-and-scales.png');
+  --bg-texture-size: 550px auto;
+  --bg-texture-opacity: 0.08;
+  --bg-texture-blend-mode: normal;
 }
 
 * {
@@ -62,14 +67,34 @@ body {
   background-color: var(--bg-deep);
   background-image:
     var(--bg-deep-gradient),
-    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 24px 24px;
+    radial-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 100% 100%, 20px 20px;
   background-position: 0 0, 0 0;
   color: var(--text-serif-cream);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+/* Ambient Background Texture: scales and feathers sitting beneath all content */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--bg-texture-url);
+  background-repeat: repeat;
+  background-size: var(--bg-texture-size);
+  opacity: var(--bg-texture-opacity);
+  mix-blend-mode: var(--bg-texture-blend-mode);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #root {
