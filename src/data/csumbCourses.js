@@ -6,13 +6,13 @@ export const csumbCourses = [
     slug: "cst-300",
     title: "Major Proseminar",
     units: 4,
-    status: "Completed",
-    term: "Term 1",
+    status: "In Progress",
+    term: "Term 1 (Current)",
     description: "Fulfills the Graduation Writing Assessment Requirement (GWAR). Focuses on developing critical reading, analytical thinking, and writing skills tailored for technology, computing, and design disciplines. Covers academic and professional communication, research methods, and source evaluation.",
     outcomesMatched: ["MLO 5: Professionalism, Ethics & Communication"],
     finalProject: {
       title: "Technical Writing Portfolio & Computing Ethics Synthesis",
-      status: "Completed",
+      status: "In Progress",
       description: "Comprehensive technical document analyzing emerging computing dilemmas, professional engineering ethics, and peer-reviewed technical research methodologies.",
       artifacts: [
         { name: "Ethics Analysis Paper", type: "document" },
