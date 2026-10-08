@@ -1,5 +1,5 @@
 import React from "react";
-import { ExternalLink, ShieldCheck, Github, Globe } from "lucide-react";
+import { ExternalLink, ShieldCheck, Globe } from "lucide-react";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -91,7 +91,7 @@ const Footer = () => {
                 className={styles.socialBtn}
                 title="GitHub Profile"
               >
-                <Github size={16} />
+                <Globe size={16} />
                 <span>GitHub</span>
               </a>
               <a
