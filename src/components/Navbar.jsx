@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   ExternalLink,
   ChevronDown,
@@ -11,10 +11,12 @@ import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -32,6 +34,42 @@ const Navbar = () => {
     setDropdownOpen(false);
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  // Clean up any pending timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setDropdownOpen(false);
+    }, 180);
+  };
+
+  const handleTriggerClick = (e) => {
+    e.preventDefault();
+    if (dropdownOpen) {
+      navigate('/courses');
+      setDropdownOpen(false);
+    } else {
+      setDropdownOpen(true);
+    }
+  };
 
   const isActive = (path) => {
     if (path === '/') return location.pathname === '/';
@@ -64,17 +102,17 @@ const Navbar = () => {
             <span>HOME</span>
           </Link>
 
-          {/* Courses Dropdown (Hover + Click) */}
+          {/* Courses Dropdown (Hover + Click with safe bridge & immediate interaction) */}
           <div
             className={styles.dropdownWrapper}
             ref={dropdownRef}
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button
               type="button"
               className={`${styles.navLink} ${styles.dropdownTrigger} ${isActive('/courses') ? styles.active : ''}`}
-              onClick={() => setDropdownOpen((prev) => !prev)}
+              onClick={handleTriggerClick}
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
             >
@@ -85,12 +123,20 @@ const Navbar = () => {
               />
             </button>
 
-            {/* Dropdown Menu */}
+            {/* Dropdown Menu (Expands to full content size) */}
             {dropdownOpen && (
-              <div className={`${styles.dropdownMenu} hud-surface`}>
+              <div
+                className={`${styles.dropdownMenu} hud-surface`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <div className={styles.dropdownHeader}>
                   <span className={styles.dropdownHeadingText}>DEGREE PATHWAY DIRECTORY</span>
-                  <Link to="/courses" className={styles.allCoursesLink}>
+                  <Link
+                    to="/courses"
+                    className={styles.allCoursesLink}
+                    onClick={() => setDropdownOpen(false)}
+                  >
                     View All Overview &rarr;
                   </Link>
                 </div>
@@ -107,18 +153,20 @@ const Navbar = () => {
                           key={course.code}
                           to={`/courses/${course.slug}`}
                           className={`${styles.courseItem} ${styles.currentCourseItem}`}
+                          onClick={() => setDropdownOpen(false)}
                         >
                           <div className={styles.courseItemTop}>
                             <span className={styles.itemCode}>{course.code}</span>
                             <span className={styles.itemBadge}>Active</span>
                           </div>
                           <span className={styles.itemTitle}>{course.title}</span>
+                          <span className={styles.itemUnits}>{course.units} Units &bull; {course.term}</span>
                         </Link>
                       ))}
                     </div>
                   </div>
 
-                  {/* Other / Planned Courses */}
+                  {/* Degree Pathway (All remaining courses, no scrollbar, full content view) */}
                   <div className={styles.dropdownCol}>
                     <div className={styles.colHeadingRow}>
                       <span className={styles.colHeading}>Degree Pathway</span>
@@ -129,6 +177,7 @@ const Navbar = () => {
                           key={course.code}
                           to={`/courses/${course.slug}`}
                           className={styles.courseItemCompact}
+                          onClick={() => setDropdownOpen(false)}
                         >
                           <span className={styles.compactCode}>{course.code}</span>
                           <span className={styles.compactTitle}>{course.title}</span>
@@ -139,7 +188,11 @@ const Navbar = () => {
                 </div>
 
                 <div className={styles.dropdownFooter}>
-                  <Link to="/courses/cst-349" className={styles.footerHighlightLink}>
+                  <Link
+                    to="/courses/cst-349"
+                    className={styles.footerHighlightLink}
+                    onClick={() => setDropdownOpen(false)}
+                  >
                     <span>Jump to CST 349 Industry Expert Interview Report &rarr;</span>
                   </Link>
                 </div>
