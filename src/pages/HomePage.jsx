@@ -9,16 +9,15 @@ import {
   ExternalLink,
   Shield,
   Layers,
-  Code2,
   Terminal,
-  Cpu
+  Sparkles
 } from 'lucide-react';
 import { studentProfile } from '@/data/studentProfile';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
-  const currentCourse = csumbCourses.find((c) => c.code === 'CST 349');
+  const currentCourses = csumbCourses.filter((c) => c.status === 'In Progress');
   const completedCount = csumbCourses.filter((c) => c.status === 'Completed').length;
   const inProgressCount = csumbCourses.filter((c) => c.status === 'In Progress').length;
   const plannedCount = csumbCourses.filter((c) => c.status === 'Planned').length;
@@ -72,7 +71,7 @@ const HomePage = () => {
               </span>
               <span className="pill pill-gold">
                 <GraduationCap size={12} />
-                <span>CST 349 ACTIVE</span>
+                <span>CURRENT TERM ACTIVE</span>
               </span>
             </div>
 
@@ -94,9 +93,13 @@ const HomePage = () => {
                 <span>View CST 349 & Report</span>
                 <ArrowRight size={15} />
               </Link>
+              <Link to="/courses/cst-300" className="btn-hud btn-secondary">
+                <span>View CST 300</span>
+                <ArrowRight size={15} />
+              </Link>
               <Link to="/courses" className="btn-hud btn-secondary">
                 <BookOpen size={15} />
-                <span>Explore All {csumbCourses.length} Courses</span>
+                <span>All {csumbCourses.length} Courses</span>
               </Link>
               <a
                 href={studentProfile.links.portfolio}
@@ -111,12 +114,15 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Profile Visual Card */}
+          {/* Profile Visual Card with Quetzal Graphic */}
           <div className={styles.avatarCard}>
             <div className={styles.avatarFrame}>
               <div className={styles.avatarGraphic}>
-                <Cpu size={56} className={styles.avatarIcon} />
-                <span className={styles.avatarInitials}>IA-R</span>
+                <img
+                  src="/quetzal.svg"
+                  alt="Quetzal Symbol - Ivan Alier-Reyes"
+                  className={styles.quetzalImg}
+                />
               </div>
               <div className={styles.profileBadge}>
                 <span className={styles.badgeName}>{studentProfile.name}</span>
@@ -143,6 +149,73 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Spotlight: Current Courses (CST 300 & CST 349) */}
+      {currentCourses.length > 0 && (
+        <section className={styles.currentSection} id="current-courses">
+          <div className={styles.sectionHeading}>
+            <span className="mono-accent">// ACTIVE ENROLLMENT</span>
+            <h2 className={`serif-header ${styles.sectionTitle}`}>Current Term Courses (In Progress)</h2>
+            <p className={styles.sectionSubtitle}>
+              Upper-division courses currently in progress for Fall Term 1. Click any course to view official
+              catalog descriptions, coursework objectives, and ongoing deliverables.
+            </p>
+          </div>
+
+          <div className={styles.currentCoursesGrid}>
+            {currentCourses.map((course) => (
+              <div key={course.code} className={`${styles.currentCourseCard} hud-surface`}>
+                <div className={styles.currentCardTop}>
+                  <div className={styles.currentCodeRow}>
+                    <span className={styles.currentCourseCode}>{course.code}</span>
+                    <span className="pill pill-gold">
+                      <Sparkles size={11} />
+                      <span>IN PROGRESS</span>
+                    </span>
+                  </div>
+                  <span className={styles.currentUnits}>{course.units} Units &bull; {course.term}</span>
+                </div>
+
+                <h3 className={styles.currentCourseTitle}>{course.title}</h3>
+                <p className={styles.currentCourseDesc}>{course.description}</p>
+
+                {/* Special highlight for CST 349 (Interview Report) */}
+                {course.code === 'CST 349' && course.interviewReport && (
+                  <div className={styles.interviewHighlightBox}>
+                    <Award size={18} className={styles.highlightIcon} />
+                    <div>
+                      <h4 className={styles.highlightHeading}>Industry Expert Interview Report</h4>
+                      <p className={styles.highlightText}>
+                        {course.interviewReport.summary}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Special highlight for CST 300 (GWAR Portfolio) */}
+                {course.code === 'CST 300' && course.finalProject && (
+                  <div className={styles.gwarHighlightBox}>
+                    <Award size={18} className={styles.highlightIconTeal} />
+                    <div>
+                      <h4 className={styles.highlightHeadingTeal}>GWAR Graduation Writing Requirement</h4>
+                      <p className={styles.highlightText}>
+                        {course.finalProject.title} — {course.finalProject.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className={styles.currentCardFooter}>
+                  <Link to={`/courses/${course.slug}`} className="btn-hud">
+                    <span>Explore {course.code} Page</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Program Description & Outcomes (MLOs) */}
       <section className={styles.outcomesSection} id="outcomes">
@@ -213,37 +286,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
-      {/* Spotlight: Current Course (CST 349) */}
-      {currentCourse && (
-        <section className={`${styles.currentCourseSection} hud-surface`}>
-          <div className={styles.currentCourseHeader}>
-            <div>
-              <span className="pill pill-gold">CURRENT TERM HIGHLIGHT</span>
-              <h2 className={styles.currentCourseTitle}>
-                {currentCourse.code}: {currentCourse.title}
-              </h2>
-              <p className={styles.currentCourseDesc}>{currentCourse.description}</p>
-            </div>
-            <Link to="/courses/cst-349" className="btn-hud">
-              <span>Read Industry Interview Report</span>
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className={styles.interviewHighlights}>
-            <div className={styles.highlightBox}>
-              <Award size={20} className={styles.highlightIcon} />
-              <div>
-                <h4 className={styles.highlightHeading}>Industry Expert Interview Report</h4>
-                <p className={styles.highlightText}>
-                  {currentCourse.interviewReport.summary}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Degree Roadmap Teaser */}
       <section className={styles.roadmapTeaser}>

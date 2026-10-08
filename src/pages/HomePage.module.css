@@ -128,30 +128,30 @@
 }
 
 .avatarGraphic {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(82, 183, 136, 0.2) 0%, rgba(14, 22, 15, 0.8) 70%);
+  background: radial-gradient(circle, rgba(82, 183, 136, 0.25) 0%, rgba(14, 22, 15, 0.85) 75%);
   border: 2px solid var(--accent-teal-bright);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 30px rgba(82, 183, 136, 0.25);
+  box-shadow: 0 0 35px rgba(82, 183, 136, 0.3);
   position: relative;
+  overflow: hidden;
+  padding: 12px;
 }
 
-.avatarIcon {
-  color: var(--accent-teal-bright);
-  opacity: 0.85;
+.quetzalImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(82, 183, 136, 0.5));
+  transition: transform 0.3s ease;
 }
 
-.avatarInitials {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  color: var(--accent-teal-bright);
-  letter-spacing: 0.1em;
-  margin-top: 4px;
+.avatarGraphic:hover .quetzalImg {
+  transform: scale(1.08);
 }
 
 .profileBadge {
@@ -207,6 +207,133 @@
   color: var(--text-sans-slate);
   margin-top: 4px;
   text-transform: uppercase;
+}
+
+/* Current Section (Supports dual active courses) */
+.currentSection {
+  margin-top: 10px;
+}
+
+.currentCoursesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 28px;
+}
+
+.currentCourseCard {
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  border-color: rgba(212, 163, 115, 0.4);
+}
+
+.currentCourseCard:hover {
+  border-color: var(--accent-gold);
+}
+
+.currentCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.currentCodeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.currentCourseCode {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.currentUnits {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--text-sans-slate);
+}
+
+.currentCourseTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--text-serif-cream);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.currentCourseDesc {
+  font-size: 0.9rem;
+  color: var(--text-sans-slate);
+  line-height: 1.6;
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.interviewHighlightBox {
+  background: rgba(212, 163, 115, 0.08);
+  border: 1px solid rgba(212, 163, 115, 0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.gwarHighlightBox {
+  background: rgba(82, 183, 136, 0.08);
+  border: 1px solid rgba(82, 183, 136, 0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.highlightIcon {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlightIconTeal {
+  color: var(--accent-teal-bright);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlightHeading {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--accent-gold);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.highlightHeadingTeal {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--accent-teal-bright);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.highlightText {
+  font-size: 0.84rem;
+  color: var(--text-sans-slate);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.currentCardFooter {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+  margin-top: auto;
 }
 
 /* Section Headings */
@@ -331,70 +458,6 @@
   line-height: 1;
 }
 
-/* Spotlight Current Course */
-.currentCourseSection {
-  padding: 36px 40px;
-  border: 1px solid rgba(212, 163, 115, 0.4);
-}
-
-.currentCourseHeader {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
-.currentCourseTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  color: var(--text-serif-cream);
-  margin: 12px 0 8px;
-}
-
-.currentCourseDesc {
-  font-size: 0.92rem;
-  color: var(--text-sans-slate);
-  max-width: 750px;
-  margin: 0;
-  line-height: 1.6;
-}
-
-.interviewHighlights {
-  background: rgba(212, 163, 115, 0.06);
-  border: 1px solid rgba(212, 163, 115, 0.2);
-  border-radius: 12px;
-  padding: 20px 24px;
-}
-
-.highlightBox {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.highlightIcon {
-  color: var(--accent-gold);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.highlightHeading {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.85rem;
-  color: var(--accent-gold);
-  margin: 0 0 6px;
-  text-transform: uppercase;
-}
-
-.highlightText {
-  font-size: 0.88rem;
-  color: var(--text-sans-slate);
-  margin: 0;
-  line-height: 1.6;
-}
-
 /* Teaser Card */
 .roadmapTeaser {
   margin-top: 10px;
@@ -438,7 +501,7 @@
   .heroSection {
     padding: 30px 20px;
   }
-  .currentCourseSection,
+  .currentCourseCard,
   .teaserCard {
     padding: 28px 20px;
   }
