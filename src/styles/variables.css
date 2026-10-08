@@ -1,0 +1,63 @@
+/* src/styles/variables.css
+ * Opacity-variant tokens for the Solarpunk / Ruin design system.
+ * Extends the :root tokens in index.css to avoid repeated raw rgba() values.
+ */
+
+:root {
+  /* --- Teal Opacity Variants --- */
+  --teal-dim-04: rgba(82, 183, 136, 0.04);
+  --teal-dim-05: rgba(82, 183, 136, 0.05);
+  --teal-dim-08: rgba(82, 183, 136, 0.08);
+  --teal-dim-10: rgba(82, 183, 136, 0.1);
+  --teal-dim-15: rgba(82, 183, 136, 0.15);
+  --teal-dim-18: rgba(82, 183, 136, 0.18);
+  --teal-dim-20: rgba(82, 183, 136, 0.2);
+  --teal-dim-25: rgba(82, 183, 136, 0.25);
+  --teal-dim-30: rgba(82, 183, 136, 0.3);
+  --teal-dim-35: rgba(82, 183, 136, 0.35);
+  --teal-dim-40: rgba(82, 183, 136, 0.4);
+  --teal-dim-45: rgba(82, 183, 136, 0.45);
+  --teal-glow-text: 0 0 15px rgba(82, 183, 136, 0.4);
+
+  /* --- Rust / Clay Opacity Variants --- */
+  --rust-dim-05: rgba(160, 82, 45, 0.05);
+  --rust-dim-10: rgba(160, 82, 45, 0.1);
+  --rust-dim-20: rgba(160, 82, 45, 0.2);
+  --rust-dim-30: rgba(160, 82, 45, 0.3);
+
+  /* --- Gold Opacity Variants --- */
+  --gold-dim-20: rgba(212, 163, 115, 0.2);
+
+  /* --- Cream / White Opacity Variants --- */
+  --white-dim-04: rgba(255, 255, 255, 0.04);
+  --white-dim-05: rgba(255, 255, 255, 0.05);
+  --white-dim-08: rgba(255, 255, 255, 0.08);
+  --white-dim-10: rgba(255, 255, 255, 0.1);
+  --white-dim-15: rgba(255, 255, 255, 0.15);
+  --cream-dim-05: rgba(249, 241, 215, 0.05);
+  --cream-dim-06: rgba(249, 241, 215, 0.06);
+
+  /* --- Black Overlay Variants --- */
+  --black-dim-20: rgba(0, 0, 0, 0.2);
+  --black-dim-25: rgba(0, 0, 0, 0.25);
+  --black-dim-30: rgba(0, 0, 0, 0.3);
+  --black-dim-40: rgba(0, 0, 0, 0.4);
+  --black-dim-50: rgba(0, 0, 0, 0.5);
+  --black-dim-60: rgba(0, 0, 0, 0.6);
+
+  /* --- Yellow Accent Opacity Variants --- */
+  --yellow-dim-05: rgba(244, 211, 94, 0.05);
+  --yellow-dim-08: rgba(244, 211, 94, 0.08);
+  --yellow-dim-25: rgba(244, 211, 94, 0.25);
+  --yellow-dim-30: rgba(244, 211, 94, 0.3);
+  --yellow-dim-40: rgba(244, 211, 94, 0.4);
+  --yellow-dim-50: rgba(244, 211, 94, 0.5);
+  --yellow-glow-text: 0 0 15px rgba(244, 211, 94, 0.5);
+
+  /* --- CSUMB Otter Blue/Gold Accents --- */
+  --csumb-navy: #20446d;
+  --csumb-sky: #5594b9;
+  --csumb-gold: #c59b27;
+  --csumb-navy-dim: rgba(32, 68, 109, 0.25);
+  --csumb-sky-dim: rgba(85, 148, 185, 0.2);
+}
