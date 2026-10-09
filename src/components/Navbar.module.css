@@ -134,15 +134,39 @@
   background: rgba(10, 16, 11, 0.98);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(82, 183, 136, 0.35);
+  border: 1px solid rgba(82, 183, 136, 0.5);
   border-radius: 16px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(82, 183, 136, 0.15);
+  animation: borderGlow 3s ease-in-out infinite alternate;
   padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   z-index: 2000;
   pointer-events: auto;
+  
+  /* Fade & Slide animation */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+@starting-style {
+  .dropdownMenu {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes borderGlow {
+  0% {
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 20px rgba(82, 183, 136, 0.15), inset 0 0 10px rgba(82, 183, 136, 0.05);
+    border-color: rgba(82, 183, 136, 0.35);
+  }
+  100% {
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(82, 183, 136, 0.45), inset 0 0 20px rgba(82, 183, 136, 0.2);
+    border-color: rgba(82, 183, 136, 0.85);
+  }
 }
 
 /* Safe Hover Bridge: prevents cursor drop-off between navbar link and menu */

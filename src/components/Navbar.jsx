@@ -1,14 +1,9 @@
 // src/components/Navbar.jsx
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  ExternalLink,
-  ChevronDown,
-  Menu,
-  X
-} from 'lucide-react';
-import { csumbCourses } from '@/data/csumbCourses';
-import styles from './Navbar.module.css';
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ExternalLink, ChevronDown, Menu, X } from "lucide-react";
+import { csumbCourses } from "@/data/csumbCourses";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const location = useLocation();
@@ -26,8 +21,8 @@ const Navbar = () => {
         setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Close dropdown on route change
@@ -68,7 +63,7 @@ const Navbar = () => {
   const handleTriggerClick = (e) => {
     e.preventDefault();
     if (dropdownOpen) {
-      navigate('/courses');
+      navigate("/courses");
       setDropdownOpen(false);
     } else {
       setDropdownOpen(true);
@@ -76,25 +71,32 @@ const Navbar = () => {
   };
 
   const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
   };
 
-  const currentCourses = csumbCourses.filter((c) => c.status === 'In Progress');
-  const plannedCourses = csumbCourses.filter((c) => c.status === 'Planned');
-  const completedCourses = csumbCourses.filter((c) => c.status === 'Completed');
+  const currentCourses = csumbCourses.filter((c) => c.status === "In Progress");
+  const plannedCourses = csumbCourses.filter((c) => c.status === "Planned");
+  const completedCourses = csumbCourses.filter((c) => c.status === "Completed");
 
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
         {/* Brand / Logo */}
-        <Link to="/" className={styles.brandGroup} onClick={() => setMobileMenuOpen(false)}>
+        <Link
+          to="/"
+          className={styles.brandGroup}
+          onClick={() => setMobileMenuOpen(false)}
+        >
           <div className={styles.logoBadge}>
-            <img src="/csumb-logo.svg" alt="CSUMB Logo" className={styles.csumbLogo} />
+            <img
+              src="/csumb-logo.svg"
+              alt="CSUMB Logo"
+              className={styles.csumbLogo}
+            />
           </div>
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>OTTER-SIDE</span>
-            <span className={styles.brandSubtitle}>CS ONLINE ILP</span>
+            <span className={styles.brandTitle}>OTTER SIDE</span>
           </div>
         </Link>
 
@@ -102,7 +104,7 @@ const Navbar = () => {
         <nav className={styles.desktopNav}>
           <Link
             to="/"
-            className={`${styles.navLink} ${isActive('/') && location.pathname === '/' ? styles.active : ''}`}
+            className={`${styles.navLink} ${isActive("/") && location.pathname === "/" ? styles.active : ""}`}
           >
             <span>HOME</span>
           </Link>
@@ -116,7 +118,7 @@ const Navbar = () => {
           >
             <button
               type="button"
-              className={`${styles.navLink} ${styles.dropdownTrigger} ${isActive('/courses') ? styles.active : ''}`}
+              className={`${styles.navLink} ${styles.dropdownTrigger} ${isActive("/courses") ? styles.active : ""}`}
               onClick={handleTriggerClick}
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
@@ -124,17 +126,17 @@ const Navbar = () => {
               <span>COURSES</span>
               <ChevronDown
                 size={14}
-                className={`${styles.chevron} ${dropdownOpen ? styles.chevronRotated : ''}`}
+                className={`${styles.chevron} ${dropdownOpen ? styles.chevronRotated : ""}`}
               />
             </button>
 
             {/* Dropdown Menu */}
             {dropdownOpen && (
-              <div
-                className={`${styles.dropdownMenu} hud-surface`}
-              >
+              <div className={`${styles.dropdownMenu} hud-surface`}>
                 <div className={styles.dropdownHeader}>
-                  <span className={styles.dropdownHeadingText}>CS ONLINE COURSE PATHWAY</span>
+                  <span className={styles.dropdownHeadingText}>
+                    CS ONLINE COURSE PATHWAY
+                  </span>
                   <Link
                     to="/courses"
                     className={styles.allCoursesLink}
@@ -151,7 +153,10 @@ const Navbar = () => {
                     <div className={styles.colHeadingRow}>
                       <span className={styles.colHeading}>Completed</span>
                     </div>
-                    <div className={styles.courseItemsList} style={{ marginBottom: '16px' }}>
+                    <div
+                      className={styles.courseItemsList}
+                      style={{ marginBottom: "16px" }}
+                    >
                       {completedCourses.map((course) => (
                         <Link
                           key={course.code}
@@ -160,18 +165,37 @@ const Navbar = () => {
                           onClick={() => setDropdownOpen(false)}
                         >
                           <div className={styles.courseItemTop}>
-                            <span className={styles.itemCode} style={{color: 'var(--accent-orchid)'}}>{course.code}</span>
-                            <span className={styles.itemBadge} style={{background: 'rgba(157, 78, 221, 0.2)', color: 'var(--accent-orchid)'}}>Completed</span>
+                            <span
+                              className={styles.itemCode}
+                              style={{ color: "var(--accent-orchid)" }}
+                            >
+                              {course.code}
+                            </span>
+                            <span
+                              className={styles.itemBadge}
+                              style={{
+                                background: "rgba(157, 78, 221, 0.2)",
+                                color: "var(--accent-orchid)",
+                              }}
+                            >
+                              Completed
+                            </span>
                           </div>
-                          <span className={styles.itemTitle}>{course.title}</span>
-                          <span className={styles.itemUnits}>{course.units} Units &bull; {course.term}</span>
+                          <span className={styles.itemTitle}>
+                            {course.title}
+                          </span>
+                          <span className={styles.itemUnits}>
+                            {course.units} Units &bull; {course.term}
+                          </span>
                         </Link>
                       ))}
                     </div>
 
                     {/* Current Active Courses */}
                     <div className={styles.colHeadingRow}>
-                      <span className={styles.colHeading}>In Progress (Fall 2026 Term A)</span>
+                      <span className={styles.colHeading}>
+                        In Progress (Fall 2026 Term A)
+                      </span>
                     </div>
                     <div className={styles.courseItemsList}>
                       {currentCourses.map((course) => (
@@ -182,11 +206,17 @@ const Navbar = () => {
                           onClick={() => setDropdownOpen(false)}
                         >
                           <div className={styles.courseItemTop}>
-                            <span className={styles.itemCode}>{course.code}</span>
+                            <span className={styles.itemCode}>
+                              {course.code}
+                            </span>
                             <span className={styles.itemBadge}>Active</span>
                           </div>
-                          <span className={styles.itemTitle}>{course.title}</span>
-                          <span className={styles.itemUnits}>{course.units} Units &bull; {course.term}</span>
+                          <span className={styles.itemTitle}>
+                            {course.title}
+                          </span>
+                          <span className={styles.itemUnits}>
+                            {course.units} Units &bull; {course.term}
+                          </span>
                         </Link>
                       ))}
                     </div>
@@ -195,7 +225,9 @@ const Navbar = () => {
                   {/* Planned Pathway */}
                   <div className={styles.dropdownCol}>
                     <div className={styles.colHeadingRow}>
-                      <span className={styles.colHeading}>Planned Pathway ({plannedCourses.length})</span>
+                      <span className={styles.colHeading}>
+                        Planned Pathway ({plannedCourses.length})
+                      </span>
                     </div>
                     <div className={styles.courseItemsGrid}>
                       {plannedCourses.map((course) => (
@@ -205,8 +237,12 @@ const Navbar = () => {
                           className={styles.courseItemCompact}
                           onClick={() => setDropdownOpen(false)}
                         >
-                          <span className={styles.compactCode}>{course.code}</span>
-                          <span className={styles.compactTitle}>{course.title}</span>
+                          <span className={styles.compactCode}>
+                            {course.code}
+                          </span>
+                          <span className={styles.compactTitle}>
+                            {course.title}
+                          </span>
                         </Link>
                       ))}
                     </div>
@@ -219,7 +255,9 @@ const Navbar = () => {
                     className={styles.footerHighlightLink}
                     onClick={() => setDropdownOpen(false)}
                   >
-                    <span>Jump to CST 349 Industry Expert Interview Report &rarr;</span>
+                    <span>
+                      Jump to CST 349 Industry Expert Interview Report &rarr;
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -229,7 +267,7 @@ const Navbar = () => {
           {/* Quick link to current CST 349 */}
           <Link
             to="/courses/cst-349"
-            className={`${styles.navLink} ${location.pathname.includes('cst-349') ? styles.active : ''}`}
+            className={`${styles.navLink} ${location.pathname.includes("cst-349") ? styles.active : ""}`}
           >
             <span>CST 349 (REPORT)</span>
           </Link>
@@ -262,7 +300,7 @@ const Navbar = () => {
         <div className={styles.mobileNav}>
           <Link
             to="/"
-            className={`${styles.mobileNavLink} ${isActive('/') && location.pathname === '/' ? styles.active : ''}`}
+            className={`${styles.mobileNavLink} ${isActive("/") && location.pathname === "/" ? styles.active : ""}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             <span>HOME</span>
@@ -280,7 +318,7 @@ const Navbar = () => {
               </span>
               <ChevronDown
                 size={16}
-                className={`${styles.chevron} ${mobileCoursesOpen ? styles.chevronRotated : ''}`}
+                className={`${styles.chevron} ${mobileCoursesOpen ? styles.chevronRotated : ""}`}
               />
             </button>
 
@@ -294,7 +332,14 @@ const Navbar = () => {
                   &rarr; View All Pathway Courses
                 </Link>
 
-                <div style={{ padding: '6px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-orchid)' }}>
+                <div
+                  style={{
+                    padding: "6px 12px 2px",
+                    fontFamily: "Fira Code",
+                    fontSize: "0.72rem",
+                    color: "var(--accent-orchid)",
+                  }}
+                >
                   COMPLETED COURSES:
                 </div>
                 {completedCourses.map((c) => (
@@ -304,13 +349,33 @@ const Navbar = () => {
                     className={styles.mobileSubItem}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <span className={styles.mobileSubCode} style={{color: 'var(--accent-orchid)'}}>{c.code}</span>
+                    <span
+                      className={styles.mobileSubCode}
+                      style={{ color: "var(--accent-orchid)" }}
+                    >
+                      {c.code}
+                    </span>
                     <span className={styles.mobileSubTitle}>{c.title}</span>
-                    <span className={styles.mobileSubBadge} style={{background: 'rgba(157, 78, 221, 0.2)', color: 'var(--accent-orchid)'}}>Completed</span>
+                    <span
+                      className={styles.mobileSubBadge}
+                      style={{
+                        background: "rgba(157, 78, 221, 0.2)",
+                        color: "var(--accent-orchid)",
+                      }}
+                    >
+                      Completed
+                    </span>
                   </Link>
                 ))}
 
-                <div style={{ padding: '8px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-gold)' }}>
+                <div
+                  style={{
+                    padding: "8px 12px 2px",
+                    fontFamily: "Fira Code",
+                    fontSize: "0.72rem",
+                    color: "var(--accent-gold)",
+                  }}
+                >
                   IN PROGRESS (FALL 2026 TERM A):
                 </div>
                 {currentCourses.map((c) => (
@@ -326,7 +391,14 @@ const Navbar = () => {
                   </Link>
                 ))}
 
-                <div style={{ padding: '8px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-teal-bright)' }}>
+                <div
+                  style={{
+                    padding: "8px 12px 2px",
+                    fontFamily: "Fira Code",
+                    fontSize: "0.72rem",
+                    color: "var(--accent-teal-bright)",
+                  }}
+                >
                   PLANNED PATHWAY:
                 </div>
                 {plannedCourses.map((c) => (
@@ -346,7 +418,7 @@ const Navbar = () => {
 
           <Link
             to="/courses/cst-349"
-            className={`${styles.mobileNavLink} ${location.pathname.includes('cst-349') ? styles.active : ''}`}
+            className={`${styles.mobileNavLink} ${location.pathname.includes("cst-349") ? styles.active : ""}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             <span>CST 349 PROSEMINAR & REPORT</span>

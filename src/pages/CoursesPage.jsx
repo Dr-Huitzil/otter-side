@@ -1,7 +1,7 @@
 // src/pages/CoursesPage.jsx
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './CoursesPage.module.css';
 
@@ -135,56 +135,13 @@ const CoursesPage = () => {
                 <h2 className={styles.courseTitle}>{course.title}</h2>
                 <p className={styles.courseDesc}>{course.description}</p>
 
-                {/* Tags row */}
-                <div className={styles.tagRow}>
-                  {course.geRequirement && (
-                    <span className={styles.pillGe}>
-                      GE: {course.geRequirement.split(':')[0]}
-                    </span>
-                  )}
-                  {course.isSubstitution && (
-                    <span className={styles.pillSub}>
-                      ⭐ Replaces Data Science
-                    </span>
-                  )}
-                  {course.gradeRequirement && (
-                    <span className={styles.pillGe} style={{ color: 'var(--accent-gold)' }}>
-                      Grade C- Required
-                    </span>
-                  )}
-                </div>
 
-                {course.finalProject && (
-                  <div className={styles.projectSection}>
-                    <span className={styles.projectLabel}>Deliverable / Artifact:</span>
-                    <p className={styles.projectTitle}>
-                      {course.finalProject.title}
-                    </p>
-                  </div>
-                )}
 
                 <div className={styles.cardFooter}>
                   <Link to={`/courses/${course.slug}`} className={styles.cardLink}>
                     <span>Course Profile</span>
                     <ArrowRight size={14} />
                   </Link>
-
-                  {course.code === 'CST 349' && course.interviewReport && (
-                    <span className={styles.specialBadge}>
-                      Includes Expert Interview
-                    </span>
-                  )}
-                  {course.code === 'CST 300' && (
-                    <span className={styles.specialBadge}>
-                      GWAR Portfolio
-                    </span>
-                  )}
-                  {course.isSubstitution && (
-                    <span className={styles.specialBadge} style={{ color: '#c77dff' }}>
-                      <ShieldCheck size={13} style={{ display: 'inline', marginRight: 4 }} />
-                      Advisor Approved
-                    </span>
-                  )}
                 </div>
               </div>
             );

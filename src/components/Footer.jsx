@@ -20,7 +20,7 @@ const Footer = () => {
           {/* Col 1: Academic context */}
           <div className={styles.col}>
             <div className={styles.brandRow}>
-              <span className={styles.otterTitle}>OTTER-SIDE</span>
+              <span className={styles.otterTitle}>On the OTTER SIDE</span>
             </div>
             <p className={styles.desc}>
               Individual Learning Plan (ILP) academic portfolio maintained by{" "}
