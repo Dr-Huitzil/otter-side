@@ -169,12 +169,12 @@ const CourseDetailPage = () => {
       )}
 
       {/* Final Project / Coursework Artifacts Section */}
-      <section className={`${styles.projectCard} hud-surface`}>
-        <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionHeading}>Final Course Project & Artifacts</h2>
-        </div>
+      {course.finalProject && (
+        <section className={`${styles.projectCard} hud-surface`}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionHeading}>Final Course Project & Artifacts</h2>
+          </div>
 
-        {course.finalProject ? (
           <div className={styles.projectContent}>
             <div className={styles.projectMain}>
               <div className={styles.projectStatusRow}>
@@ -186,7 +186,7 @@ const CourseDetailPage = () => {
               <p className={styles.projectDescription}>{course.finalProject.description}</p>
             </div>
 
-            {/* Artifact Placeholders */}
+            {/* Artifacts */}
             {course.finalProject.artifacts && course.finalProject.artifacts.length > 0 ? (
               <div className={styles.artifactsGrid}>
                 {course.finalProject.artifacts.map((art, idx) => (
@@ -206,12 +206,8 @@ const CourseDetailPage = () => {
               </div>
             )}
           </div>
-        ) : (
-          <p className={styles.descriptionText}>
-            Project requirements and deliverables will be updated as this term commences.
-          </p>
-        )}
-      </section>
+        </section>
+      )}
 
       {/* Bottom Pagination */}
       <div className={styles.bottomNav}>

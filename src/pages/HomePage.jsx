@@ -69,7 +69,7 @@ const HomePage = () => {
             {/* Quick Action Buttons */}
             <div className={styles.heroActions}>
               <Link to="/courses/cst-349" className="btn-hud">
-                <span>View CST 349 & Report</span>
+                <span>View CST 349</span>
                 <ArrowRight size={15} />
               </Link>
               <Link to="/courses/cst-300" className="btn-hud btn-secondary">

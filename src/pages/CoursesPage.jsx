@@ -89,19 +89,21 @@ const CoursesPage = () => {
 
               <p className={styles.courseDesc}>{course.description}</p>
 
-              <div className={styles.projectSection}>
-                <span className={styles.projectLabel}>Final Course Project / Artifact:</span>
-                <p className={styles.projectTitle}>
-                  {course.finalProject ? course.finalProject.title : 'Pending Course Completion'}
-                </p>
-              </div>
+              {course.finalProject && (
+                <div className={styles.projectSection}>
+                  <span className={styles.projectLabel}>Final Course Project / Artifact:</span>
+                  <p className={styles.projectTitle}>
+                    {course.finalProject.title}
+                  </p>
+                </div>
+              )}
 
               <div className={styles.cardFooter}>
                 <Link to={`/courses/${course.slug}`} className={styles.cardLink}>
                   <span>Explore Course Page</span>
                   <ArrowRight size={14} />
                 </Link>
-                {course.code === 'CST 349' && (
+                {course.code === 'CST 349' && course.interviewReport && (
                   <span className={styles.specialBadge}>
                     Includes Expert Interview
                   </span>
