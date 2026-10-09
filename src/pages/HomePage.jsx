@@ -1,7 +1,7 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Code, Briefcase, Mail, Globe } from "lucide-react";
 import { studentProfile } from "@/data/studentProfile";
 import { csumbCourses } from "@/data/csumbCourses";
 import styles from "./HomePage.module.css";
@@ -55,6 +55,7 @@ const HomePage = () => {
             </p>
 
             <p className={styles.studentBio}>{studentProfile.bio}</p>
+
           </div>
 
           {/* Profile Visual Card */}
@@ -73,6 +74,34 @@ const HomePage = () => {
               <div className={styles.profileBadge}>
                 <span className={styles.badgeName}>{studentProfile.name}</span>
               </div>
+            </div>
+
+            {/* Social & Contact Links */}
+            <div className={styles.socialLinksList}>
+              {studentProfile.links.linkedin && (
+                <a href={studentProfile.links.linkedin} target="_blank" rel="noopener noreferrer" className={styles.socialLinkItem} aria-label="LinkedIn">
+                  <Briefcase size={16} />
+                  <span>LinkedIn</span>
+                </a>
+              )}
+              {studentProfile.links.github && (
+                <a href={studentProfile.links.github} target="_blank" rel="noopener noreferrer" className={styles.socialLinkItem} aria-label="GitHub">
+                  <Code size={16} />
+                  <span>GitHub</span>
+                </a>
+              )}
+              {studentProfile.email && (
+                <a href={`mailto:${studentProfile.email}`} className={styles.socialLinkItem} aria-label="Email">
+                  <Mail size={16} />
+                  <span>Email</span>
+                </a>
+              )}
+              {studentProfile.links.portfolio && (
+                <a href={studentProfile.links.portfolio} target="_blank" rel="noopener noreferrer" className={styles.socialLinkItem} aria-label="Portfolio">
+                  <Globe size={16} />
+                  <span>Portfolio</span>
+                </a>
+              )}
             </div>
 
             {/* Metric counters for CS Online Pathway */}

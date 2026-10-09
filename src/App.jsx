@@ -7,6 +7,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const CoursesPage = lazy(() => import('@/pages/CoursesPage'));
 const CourseDetailPage = lazy(() => import('@/pages/CourseDetailPage'));
+const ResumePage = lazy(() => import('@/pages/ResumePage'));
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/resume" element={<ResumePage />} />
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/courses/:slug" element={<CourseDetailPage />} />
               <Route path="/cst-349" element={<Navigate to="/courses/cst-349" replace />} />

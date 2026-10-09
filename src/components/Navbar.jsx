@@ -264,12 +264,12 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Quick link to current CST 349 */}
+          {/* Quick link to Resume */}
           <Link
-            to="/courses/cst-349"
-            className={`${styles.navLink} ${location.pathname.includes("cst-349") ? styles.active : ""}`}
+            to="/resume"
+            className={`${styles.navLink} ${location.pathname.includes("resume") ? styles.active : ""}`}
           >
-            <span>CST 349 (REPORT)</span>
+            <span>RESUME</span>
           </Link>
 
           {/* External Bridge back to Personal Portfolio */}
@@ -417,11 +417,11 @@ const Navbar = () => {
           </div>
 
           <Link
-            to="/courses/cst-349"
-            className={`${styles.mobileNavLink} ${location.pathname.includes("cst-349") ? styles.active : ""}`}
+            to="/resume"
+            className={`${styles.mobileNavLink} ${location.pathname.includes("resume") ? styles.active : ""}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span>CST 349 PROSEMINAR & REPORT</span>
+            <span>RESUME</span>
           </Link>
 
           <a
