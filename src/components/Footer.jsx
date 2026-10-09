@@ -1,6 +1,10 @@
+// src/components/Footer.jsx
 import React from 'react';
-import { ExternalLink, GitBranch, Briefcase, Globe } from 'lucide-react';
+import { ExternalLink, GitBranch, Briefcase, Globe, ShieldCheck } from 'lucide-react';
+import { studentProfile } from '@/data/studentProfile';
 import styles from './Footer.module.css';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 const Footer = () => {
   return (
@@ -11,15 +15,15 @@ const Footer = () => {
           <div className={styles.col}>
             <div className={styles.brandRow}>
               <span className={styles.otterTitle}>OTTER-SIDE</span>
-              <span className={styles.tag}>CSUMB ILP</span>
+              <span className={styles.tag}>CS ONLINE ILP</span>
             </div>
             <p className={styles.desc}>
-              Official Individual Learning Plan (ILP) academic portfolio maintained by{' '}
-              <strong className={styles.highlight}>Ivan Alier-Reyes</strong> for the B.S. in Computer Science
-              program at California State University, Monterey Bay.
+              Individual Learning Plan (ILP) academic portfolio maintained by{' '}
+              <strong className={styles.highlight}>{studentProfile.name}</strong>
+              for the B.S. in Computer Science Online Degree Completion program at California State University, Monterey Bay.
             </p>
             <p className={styles.subdesc}>
-              Maintained continuously from CST 349 through culmination in CST 499 Capstone.
+              Tracking CS Online Course Pathway progression from CST 349 Proseminar through CST 499 Capstone.
             </p>
           </div>
 
@@ -71,7 +75,7 @@ const Footer = () => {
             </p>
             <div className={styles.socialRow}>
               <a
-                href="https://willofhuitzil.com"
+                href={studentProfile.links.portfolio}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
@@ -81,7 +85,7 @@ const Footer = () => {
                 <span>WillofHuitzil.com</span>
               </a>
               <a
-                href="https://github.com/Dr-Huitzil"
+                href={studentProfile.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
@@ -91,7 +95,7 @@ const Footer = () => {
                 <span>GitHub (Dr-Huitzil)</span>
               </a>
               <a
-                href="https://www.linkedin.com/in/ivan-alier-reyes"
+                href={studentProfile.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
@@ -106,9 +110,10 @@ const Footer = () => {
 
         <div className={styles.bottomBar}>
           <div className={styles.copy}>
-            &copy; {new Date().getFullYear()} Ivan Alier-Reyes &bull; School of Computing & Design &bull; CSUMB
+            &copy; {CURRENT_YEAR} {studentProfile.name} &bull; School of Computing & Design &bull; CSUMB
           </div>
-          <div className={styles.complianceNotice}>
+          <div className={styles.complianceNotice} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <ShieldCheck size={14} color="var(--accent-teal-bright)" />
             <span>Satisfies CST 349 / CST 499 Capstone ILP Portfolio Specification</span>
           </div>
         </div>

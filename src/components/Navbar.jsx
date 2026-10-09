@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -31,8 +32,11 @@ const Navbar = () => {
 
   // Close dropdown on route change
   useEffect(() => {
-    setDropdownOpen(false);
-    setMobileMenuOpen(false);
+    const timer = setTimeout(() => {
+      setDropdownOpen(false);
+      setMobileMenuOpen(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   // Clean up any pending timeout on unmount
@@ -77,7 +81,8 @@ const Navbar = () => {
   };
 
   const currentCourses = csumbCourses.filter((c) => c.status === 'In Progress');
-  const otherCourses = csumbCourses.filter((c) => c.status !== 'In Progress');
+  const plannedCourses = csumbCourses.filter((c) => c.status === 'Planned');
+  const completedCourses = csumbCourses.filter((c) => c.status === 'Completed');
 
   return (
     <header className={styles.header}>
@@ -89,7 +94,7 @@ const Navbar = () => {
           </div>
           <div className={styles.brandText}>
             <span className={styles.brandTitle}>OTTER-SIDE</span>
-            <span className={styles.brandSubtitle}>CSUMB ILP PORTFOLIO</span>
+            <span className={styles.brandSubtitle}>CS ONLINE ILP</span>
           </div>
         </Link>
 
@@ -102,7 +107,7 @@ const Navbar = () => {
             <span>HOME</span>
           </Link>
 
-          {/* Courses Dropdown (Hover + Click with safe bridge & immediate interaction) */}
+          {/* Courses Dropdown */}
           <div
             className={styles.dropdownWrapper}
             ref={dropdownRef}
@@ -123,7 +128,7 @@ const Navbar = () => {
               />
             </button>
 
-            {/* Dropdown Menu (Expands to full content size) */}
+            {/* Dropdown Menu */}
             {dropdownOpen && (
               <div
                 className={`${styles.dropdownMenu} hud-surface`}
@@ -131,21 +136,44 @@ const Navbar = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <div className={styles.dropdownHeader}>
-                  <span className={styles.dropdownHeadingText}>DEGREE PATHWAY DIRECTORY</span>
+                  <span className={styles.dropdownHeadingText}>CS ONLINE COURSE PATHWAY</span>
                   <Link
                     to="/courses"
                     className={styles.allCoursesLink}
                     onClick={() => setDropdownOpen(false)}
                   >
-                    View All Overview &rarr;
+                    View All {csumbCourses.length} Courses &rarr;
                   </Link>
                 </div>
 
                 <div className={styles.dropdownGrid}>
-                  {/* Current Active Courses */}
+                  {/* Left Column: Completed & In Progress */}
                   <div className={styles.dropdownCol}>
+                    {/* Completed Courses */}
                     <div className={styles.colHeadingRow}>
-                      <span className={styles.colHeading}>Current Term (Active)</span>
+                      <span className={styles.colHeading}>Completed</span>
+                    </div>
+                    <div className={styles.courseItemsList} style={{ marginBottom: '16px' }}>
+                      {completedCourses.map((course) => (
+                        <Link
+                          key={course.code}
+                          to={`/courses/${course.slug}`}
+                          className={`${styles.courseItem} ${styles.completedCourseItem}`}
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          <div className={styles.courseItemTop}>
+                            <span className={styles.itemCode} style={{color: 'var(--accent-orchid)'}}>{course.code}</span>
+                            <span className={styles.itemBadge} style={{background: 'rgba(157, 78, 221, 0.2)', color: 'var(--accent-orchid)'}}>Completed</span>
+                          </div>
+                          <span className={styles.itemTitle}>{course.title}</span>
+                          <span className={styles.itemUnits}>{course.units} Units &bull; {course.term}</span>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Current Active Courses */}
+                    <div className={styles.colHeadingRow}>
+                      <span className={styles.colHeading}>In Progress (Fall 2026 Term A)</span>
                     </div>
                     <div className={styles.courseItemsList}>
                       {currentCourses.map((course) => (
@@ -166,13 +194,13 @@ const Navbar = () => {
                     </div>
                   </div>
 
-                  {/* Degree Pathway (All remaining courses, no scrollbar, full content view) */}
+                  {/* Planned Pathway */}
                   <div className={styles.dropdownCol}>
                     <div className={styles.colHeadingRow}>
-                      <span className={styles.colHeading}>Degree Pathway</span>
+                      <span className={styles.colHeading}>Planned Pathway ({plannedCourses.length})</span>
                     </div>
                     <div className={styles.courseItemsGrid}>
-                      {otherCourses.map((course) => (
+                      {plannedCourses.map((course) => (
                         <Link
                           key={course.code}
                           to={`/courses/${course.slug}`}
@@ -250,7 +278,7 @@ const Navbar = () => {
               onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
             >
               <span className={styles.mobileAccordionLeft}>
-                ALL COURSES ({csumbCourses.length})
+                ALL PATHWAY COURSES ({csumbCourses.length})
               </span>
               <ChevronDown
                 size={16}
@@ -265,9 +293,29 @@ const Navbar = () => {
                   className={styles.mobileSubItemHighlight}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  &rarr; View All Courses Directory
+                  &rarr; View All Pathway Courses
                 </Link>
-                {csumbCourses.map((c) => (
+
+                <div style={{ padding: '6px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-orchid)' }}>
+                  COMPLETED COURSES:
+                </div>
+                {completedCourses.map((c) => (
+                  <Link
+                    key={c.code}
+                    to={`/courses/${c.slug}`}
+                    className={styles.mobileSubItem}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className={styles.mobileSubCode} style={{color: 'var(--accent-orchid)'}}>{c.code}</span>
+                    <span className={styles.mobileSubTitle}>{c.title}</span>
+                    <span className={styles.mobileSubBadge} style={{background: 'rgba(157, 78, 221, 0.2)', color: 'var(--accent-orchid)'}}>Completed</span>
+                  </Link>
+                ))}
+
+                <div style={{ padding: '8px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-gold)' }}>
+                  IN PROGRESS (FALL 2026 TERM A):
+                </div>
+                {currentCourses.map((c) => (
                   <Link
                     key={c.code}
                     to={`/courses/${c.slug}`}
@@ -276,9 +324,22 @@ const Navbar = () => {
                   >
                     <span className={styles.mobileSubCode}>{c.code}</span>
                     <span className={styles.mobileSubTitle}>{c.title}</span>
-                    {c.status === 'In Progress' && (
-                      <span className={styles.mobileSubBadge}>Active</span>
-                    )}
+                    <span className={styles.mobileSubBadge}>Active</span>
+                  </Link>
+                ))}
+
+                <div style={{ padding: '8px 12px 2px', fontFamily: 'Fira Code', fontSize: '0.72rem', color: 'var(--accent-teal-bright)' }}>
+                  PLANNED PATHWAY:
+                </div>
+                {plannedCourses.map((c) => (
+                  <Link
+                    key={c.code}
+                    to={`/courses/${c.slug}`}
+                    className={styles.mobileSubItem}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className={styles.mobileSubCode}>{c.code}</span>
+                    <span className={styles.mobileSubTitle}>{c.title}</span>
                   </Link>
                 ))}
               </div>

@@ -58,11 +58,20 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.termLabel {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: var(--accent-gold);
 }
 
 .badges {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .courseTitle {
@@ -90,6 +99,77 @@
   color: var(--accent-teal-bright);
 }
 
+/* Special Notices (Substitution, On Campus, GE) */
+.substitutionNotice {
+  background: rgba(157, 78, 221, 0.12);
+  border: 1px solid rgba(157, 78, 221, 0.35);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.onCampusNotice {
+  background: rgba(32, 68, 109, 0.25);
+  border: 1px solid rgba(85, 148, 185, 0.35);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.policyNotice {
+  background: rgba(212, 163, 115, 0.1);
+  border: 1px solid rgba(212, 163, 115, 0.3);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.noticeTitle {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: #c77dff;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noticeTitleGold {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noticeTitleBlue {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: #7bb5d7;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noticeText {
+  font-size: 0.9rem;
+  color: var(--text-serif-cream);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* Content Cards */
 .contentCard,
 .projectCard {
@@ -103,10 +183,6 @@
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 14px;
-}
-
-.sectionIcon {
-  color: var(--accent-teal-bright);
 }
 
 .sectionHeading {
@@ -166,11 +242,6 @@
   line-height: 1.6;
 }
 
-.interviewIcon {
-  color: var(--accent-gold);
-  flex-shrink: 0;
-}
-
 .interviewMetaGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -186,10 +257,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.metaIcon {
-  color: var(--accent-gold);
 }
 
 .metaLabel {
@@ -320,10 +387,6 @@
   border: 1px solid rgba(82, 183, 136, 0.25);
   border-radius: 8px;
   padding: 16px;
-}
-
-.artifactIcon {
-  color: var(--accent-teal-bright);
 }
 
 .artifactName {

@@ -202,6 +202,12 @@ body::before {
   background: rgba(32, 68, 109, 0.2);
 }
 
+.pill-purple {
+  color: var(--accent-orchid);
+  border-color: rgba(157, 78, 221, 0.3);
+  background: rgba(157, 78, 221, 0.1);
+}
+
 /* Buttons */
 .btn-hud {
   display: inline-flex;

@@ -1,9 +1,12 @@
+// src/pages/CourseDetailPage.jsx
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import {
   ArrowLeft,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  ShieldAlert,
+  Award
 } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './CourseDetailPage.module.css';
@@ -32,7 +35,7 @@ const CourseDetailPage = () => {
       <div className={styles.topNav}>
         <Link to="/courses" className={styles.backLink}>
           <ArrowLeft size={16} />
-          <span>All ILP Courses</span>
+          <span>All Pathway Courses</span>
         </Link>
 
         <div className={styles.coursePagination}>
@@ -52,17 +55,17 @@ const CourseDetailPage = () => {
       {/* Main Course Header */}
       <div className={`${styles.headerCard} hud-surface`}>
         <div className={styles.metaRow}>
-          <span className={styles.termLabel}>{course.term}</span>
+          <span className={styles.termLabel}>{course.term} &bull; {course.category}</span>
           <div className={styles.badges}>
             <span className="pill">{course.units} Units</span>
             {isCompleted && (
-              <span className="pill">COMPLETED</span>
+              <span className="pill pill-purple">COMPLETED</span>
             )}
             {isCurrent && (
-              <span className="pill pill-gold">IN PROGRESS</span>
+              <span className="pill pill-gold">ACTIVE / IN PROGRESS</span>
             )}
             {!isCompleted && !isCurrent && (
-              <span className="pill pill-csumb">PLANNED</span>
+              <span className="pill pill-csumb">PLANNED PATHWAY</span>
             )}
           </div>
         </div>
@@ -79,6 +82,36 @@ const CourseDetailPage = () => {
           ))}
         </div>
       </div>
+
+      {/* Special Notice: Official Course Substitution (CST 315) */}
+      {course.isSubstitution && (
+        <div className={styles.substitutionNotice}>
+          <ShieldAlert size={24} color="#c77dff" style={{ flexShrink: 0 }} />
+          <div>
+            <h3 className={styles.noticeTitle}>
+              Official Elective Substitution
+            </h3>
+            <p className={styles.noticeText}>
+              {course.substitutionNote} This course replaces the default <em>CST 383: Introduction to Data Science</em> elective requirement to specialize in cybersecurity, systems protection, and threat defense.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Special Notice: General Education Fulfillments */}
+      {course.geRequirement && (
+        <div className={styles.policyNotice}>
+          <Award size={20} color="var(--accent-gold)" style={{ flexShrink: 0 }} />
+          <div>
+            <h4 className={styles.noticeTitleGold}>
+              CSUMB General Education Requirement
+            </h4>
+            <p className={styles.noticeText}>
+              This course fulfills the CSUMB <strong>{course.geRequirement}</strong>.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Course Description Section */}
       <section className={`${styles.contentCard} hud-surface`}>
@@ -103,7 +136,7 @@ const CourseDetailPage = () => {
       {course.code === 'CST 349' && course.interviewReport && (
         <section className={`${styles.interviewCard} hud-surface`}>
           <div className={styles.interviewHeader}>
-            <div className={styles.interviewTitleGroup}>
+            <div>
               <span className="pill pill-gold">PROSEMINAR DELIVERABLE</span>
               <h2 className={`serif-header ${styles.interviewTitle}`}>
                 Industry Expert Interview Report
@@ -179,7 +212,7 @@ const CourseDetailPage = () => {
             <div className={styles.projectMain}>
               <div className={styles.projectStatusRow}>
                 <h3 className={styles.projectTitle}>{course.finalProject.title}</h3>
-                <span className={`pill ${course.finalProject.status === 'Completed' ? '' : 'pill-gold'}`}>
+                <span className={`pill ${course.finalProject.status === 'Completed' ? 'pill-purple' : 'pill-gold'}`}>
                   {course.finalProject.status.toUpperCase()}
                 </span>
               </div>
