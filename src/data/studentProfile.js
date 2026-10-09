@@ -17,14 +17,16 @@ export const studentProfile = {
   bio: `I am an undergraduate student in the Computer Science Online program at California State University, Monterey Bay. With a strong foundation in enterprise IT infrastructure and cybersecurity operations, I am expanding my technical scope into systems architecture, algorithmic problem-solving, and full-stack engineering. This Individual Learning Plan (ILP) portfolio documents my CS Online Course Pathway coursework, term deliverables, and progression toward CST 499 Capstone graduation.`,
   goals: {
     academic: [
-      "Master core algorithmic principles, design patterns, and distributed system architectures across all upper-division courses.",
-      "Consistently document and publish high-quality technical artifacts and source repositories for every completed term.",
-      "Engineer a real-world, high-impact software system as the culminating project for the CST 499 Capstone."
+      "Earned associate degrees in Computer Science, Biology, Chemistry, Physics, and Engineering, alongside an active real estate license.",
+      "Apply knowledge from Internet Programming and Software Design to engineer day-to-day applications, design workplace automations, and bring a creative edge to projects.",
+      "Master precision agriculture technologies and sensor analytics to engineer a capstone project utilizing drone aerial imaging and ground soil sampling.",
+      "Plan to further my education beyond an undergraduate degree by pursuing a doctorate in either Computer Science or Biology."
     ],
     career: [
-      "Bridge systems infrastructure and cybersecurity proficiency with full-stack software development to build resilient, cloud-native applications.",
-      "Contribute to mission-driven engineering teams building modern, accessible, and high-performance digital tools.",
-      "Cultivate continuous learning habits and pursue industry leadership in software engineering and cloud security."
+      "Core Career Goal: Transition from IT desktop support into a specialized cybersecurity role focusing on software reverse engineering and penetration testing within the next one to two years.",
+      "Step out of the comfort zone of mid-level IT desktop support to push past the helpdesk ceiling and achieve greater professional potential.",
+      "Leverage accumulated technical grit and troubleshooting experience to succeed in reverse engineering software and penetration testing.",
+      "Thrive in environments with new challenges by rapidly learning and outgrowing roles, rather than remaining at a single desk or company indefinitely."
     ]
   },
   courses: {
