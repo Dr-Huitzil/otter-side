@@ -132,8 +132,6 @@ const Navbar = () => {
             {dropdownOpen && (
               <div
                 className={`${styles.dropdownMenu} hud-surface`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 <div className={styles.dropdownHeader}>
                   <span className={styles.dropdownHeadingText}>CS ONLINE COURSE PATHWAY</span>

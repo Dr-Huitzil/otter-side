@@ -1,10 +1,7 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  ExternalLink
-} from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { studentProfile } from "@/data/studentProfile";
 import { csumbCourses } from "@/data/csumbCourses";
 import styles from "./HomePage.module.css";
@@ -42,10 +39,6 @@ const HomePage = () => {
               {studentProfile.college} &bull; {studentProfile.program}
             </p>
           </div>
-
-          <div className={styles.brandRightBadges}>
-            <span className="pill pill-gold">CS ONLINE ILP</span>
-          </div>
         </div>
       </section>
 
@@ -53,11 +46,6 @@ const HomePage = () => {
       <section className={`${styles.heroSection} hud-surface`}>
         <div className={styles.heroGrid}>
           <div className={styles.heroInfo}>
-            <div className={styles.statusPills}>
-              <span className="pill">CS ONLINE ILP</span>
-              <span className="pill pill-gold">FALL 2026 TERM A ACTIVE</span>
-            </div>
-
             <h1 className={`serif-header serif-glow ${styles.studentName}`}>
               {studentProfile.name}
             </h1>
@@ -67,32 +55,6 @@ const HomePage = () => {
             </p>
 
             <p className={styles.studentBio}>{studentProfile.bio}</p>
-
-            {/* Quick Action Buttons */}
-            <div className={styles.heroActions}>
-              <a href="#current-courses" className="btn-hud">
-                <span>Current Term Courses ({currentCourses.length})</span>
-                <ArrowRight size={15} />
-              </a>
-              <Link to="/courses" className="btn-hud btn-secondary">
-                <span>All {csumbCourses.length} Pathway Courses</span>
-                <ArrowRight size={15} />
-              </Link>
-              <Link to="/courses/cst-349" className="btn-hud btn-secondary">
-                <span>View CST 349</span>
-                <ArrowRight size={15} />
-              </Link>
-              <a
-                href={studentProfile.links.portfolio}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-hud btn-secondary"
-                title="View Personal Engineering Portfolio"
-              >
-                <span>WillofHuitzil.com</span>
-                <ExternalLink size={14} />
-              </a>
-            </div>
           </div>
 
           {/* Profile Visual Card */}
@@ -116,7 +78,9 @@ const HomePage = () => {
             {/* Metric counters for CS Online Pathway */}
             <div className={styles.statsRow}>
               <div className={styles.statBox}>
-                <span className={styles.statNum}>{completedCourses.length}</span>
+                <span className={styles.statNum}>
+                  {completedCourses.length}
+                </span>
                 <span className={styles.statLabel}>Completed</span>
               </div>
               <div className={styles.statBox}>
@@ -135,15 +99,12 @@ const HomePage = () => {
       {/* Spotlight: Current Courses (Fall 2026 - Term A Only) */}
       <section className={styles.currentSection} id="current-courses">
         <div className={styles.sectionHeading}>
-          <div className="statusPills" style={{ marginBottom: "8px" }}>
-            <span className="pill pill-gold">ACTIVE TERM</span>
-            <span className="pill">FALL 2026 - TERM A</span>
-          </div>
           <h2 className={`serif-header ${styles.sectionTitle}`}>
             Current Term Courses (Fall 2026 - Term A)
           </h2>
           <p className={styles.sectionSubtitle}>
-            Currently enrolled in the 5-unit writing assessment and proseminar block for Fall 2026 Term A.
+            Currently enrolled in the 5-unit writing assessment and proseminar
+            block for Fall 2026 Term A.
           </p>
         </div>
 
@@ -190,7 +151,8 @@ const HomePage = () => {
                       Graduation Writing Assessment Requirement (GWAR)
                     </h4>
                     <p className={styles.highlightText}>
-                      {course.finalProject.title} — {course.finalProject.description}
+                      {course.finalProject.title} —{" "}
+                      {course.finalProject.description}
                     </p>
                   </div>
                 </div>
@@ -288,8 +250,9 @@ const HomePage = () => {
               CS Online Course Pathway Roadmap ({csumbCourses.length} Courses)
             </h3>
             <p className={styles.teaserDesc}>
-              Every course in the official CS Online pathway has an established ILP profile ready for
-              continuous documentation, syllabus outcomes, and project deliverables through the CST 499 Capstone.
+              Every course in the official CS Online pathway has an established
+              ILP profile ready for continuous documentation, syllabus outcomes,
+              and project deliverables through the CST 499 Capstone.
             </p>
           </div>
           <Link to="/courses" className="btn-hud">

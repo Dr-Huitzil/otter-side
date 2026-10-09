@@ -1,8 +1,14 @@
 // src/components/Footer.jsx
-import React from 'react';
-import { ExternalLink, GitBranch, Briefcase, Globe, ShieldCheck } from 'lucide-react';
-import { studentProfile } from '@/data/studentProfile';
-import styles from './Footer.module.css';
+import React from "react";
+import {
+  ExternalLink,
+  GitBranch,
+  Briefcase,
+  Globe,
+  ShieldCheck,
+} from "lucide-react";
+import { studentProfile } from "@/data/studentProfile";
+import styles from "./Footer.module.css";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -15,15 +21,18 @@ const Footer = () => {
           <div className={styles.col}>
             <div className={styles.brandRow}>
               <span className={styles.otterTitle}>OTTER-SIDE</span>
-              <span className={styles.tag}>CS ONLINE ILP</span>
             </div>
             <p className={styles.desc}>
-              Individual Learning Plan (ILP) academic portfolio maintained by{' '}
-              <strong className={styles.highlight}>{studentProfile.name}</strong>
-              for the B.S. in Computer Science Online Degree Completion program at California State University, Monterey Bay.
+              Individual Learning Plan (ILP) academic portfolio maintained by{" "}
+              <strong className={styles.highlight}>
+                {studentProfile.name}
+              </strong>
+              for the B.S. in Computer Science Online Degree Completion program
+              at California State University, Monterey Bay.
             </p>
             <p className={styles.subdesc}>
-              Tracking CS Online Course Pathway progression from CST 349 Proseminar through CST 499 Capstone.
+              Tracking CS Online Course Pathway progression from CST 349
+              Proseminar through CST 499 Capstone.
             </p>
           </div>
 
@@ -71,7 +80,8 @@ const Footer = () => {
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Author & Portfolio</h4>
             <p className={styles.desc}>
-              Connect with Ivan's engineering work, security investigations, and personal projects:
+              Connect with Ivan's engineering work, security investigations, and
+              personal projects:
             </p>
             <div className={styles.socialRow}>
               <a
@@ -110,11 +120,8 @@ const Footer = () => {
 
         <div className={styles.bottomBar}>
           <div className={styles.copy}>
-            &copy; {CURRENT_YEAR} {studentProfile.name} &bull; School of Computing & Design &bull; CSUMB
-          </div>
-          <div className={styles.complianceNotice} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            <ShieldCheck size={14} color="var(--accent-teal-bright)" />
-            <span>Satisfies CST 349 / CST 499 Capstone ILP Portfolio Specification</span>
+            &copy; {CURRENT_YEAR} {studentProfile.name} &bull; School of
+            Computing & Design &bull; CSUMB
           </div>
         </div>
       </div>
