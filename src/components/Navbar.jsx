@@ -96,7 +96,7 @@ const Navbar = () => {
             />
           </div>
           <div className={styles.brandText}>
-            <span className={styles.brandTitle}>OTTER SIDE</span>
+            <span className={styles.brandTitle}>CSUMB ILP Portfolio</span>
           </div>
         </Link>
 
