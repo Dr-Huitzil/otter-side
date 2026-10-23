@@ -5,7 +5,6 @@ import {
   GitBranch,
   Briefcase,
   Globe,
-  ShieldCheck,
 } from "lucide-react";
 import { studentProfile } from "@/data/studentProfile";
 import styles from "./Footer.module.css";

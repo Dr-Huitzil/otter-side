@@ -1,7 +1,7 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Code, Briefcase, Mail, Globe } from "lucide-react";
+import { ArrowRight, Code, Briefcase, Mail, Globe } from "lucide-react";
 import { studentProfile } from "@/data/studentProfile";
 import { csumbCourses } from "@/data/csumbCourses";
 import styles from "./HomePage.module.css";

@@ -1,4 +1,5 @@
 // src/data/csumbCourses.js
+import { interviewReport } from "./interviewReport.js";
 
 export const csumbCourses = [
   // Prior Term (Completed)
@@ -85,19 +86,7 @@ export const csumbCourses = [
         { name: "Industry Expert Interview Report", type: "report" }
       ]
     },
-    interviewReport: {
-      interviewee: "Industry Expert / Tech Leader",
-      role: "Senior Systems Engineer & Security Architect",
-      company: "Enterprise Cloud Infrastructure Solutions",
-      date: "Fall 2026",
-      summary: "Informational interview conducted to explore enterprise infrastructure resilience, cloud automation strategies, and the evolving integration between software engineering and security operations (DevSecOps).",
-      keyTakeaways: [
-        "Continuous learning and adaptability in cloud infrastructure are vital as legacy operations shift toward code-driven infrastructure (IaC).",
-        "Mastering computer science fundamentals (data structures, system calls, networking) creates an enduring technical baseline regardless of specific framework trends.",
-        "Communication and cross-functional team empathy remain the primary differentiator for mid-level and senior technical contributors."
-      ],
-      fullReportText: `The Industry Expert Interview was conducted to gain deep, real-world perspective on modern software engineering practices, cloud operations, and career advancement within computing. Key dialogue addressed architectural trade-offs in cloud migration, incident response handling, and the essential skills required for upcoming graduates entering competitive technical roles.`
-    }
+    interviewReport
   },
 
   // Fall 2026 - Term B (Planned)
