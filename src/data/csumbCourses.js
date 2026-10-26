@@ -1,5 +1,6 @@
 // src/data/csumbCourses.js
 import { interviewReport } from "./interviewReport.js";
+import { ethicsPaper } from "./ethicsPaper.js";
 
 export const csumbCourses = [
   // Prior Term (Completed)
@@ -59,10 +60,11 @@ export const csumbCourses = [
       status: "In Progress",
       description: "Comprehensive technical document analyzing emerging computing dilemmas, professional engineering ethics, and peer-reviewed technical research methodologies.",
       artifacts: [
-        { name: "Ethics Analysis Paper", type: "document" },
+        { name: "Ethics Analysis Paper: 'The Devil’s Got Your Number Tonight'", type: "document" },
         { name: "Technical Communication Portfolio", type: "code" }
       ]
-    }
+    },
+    ethicsPaper
   },
   {
     code: "CST 349",
@@ -78,15 +80,36 @@ export const csumbCourses = [
     description: "Connects academic studies in computing to personal and professional career goals. Focuses on analyzing industry literature, exploring modern tech roles, establishing an Individual Learning Plan (ILP), and conducting informational interviews with industry professionals.",
     outcomesMatched: ["MLO 5: Professionalism, Ethics & Communication"],
     finalProject: {
-      title: "Individual Learning Plan (ILP) & Industry Expert Interview",
+      title: "Individual Learning Plan (ILP), Industry Interview & Group Video",
       status: "In Progress",
-      description: "Long-term curated portfolio tracking progression across all CS degree milestones toward CST 499 Capstone, accompanied by an informational interview with an established computing professional.",
+      description: "Long-term curated portfolio tracking progression across all CS degree milestones toward CST 499 Capstone, accompanied by an informational interview with an established computing professional and collaborative group research videos exploring smart glasses.",
       artifacts: [
         { name: "ILP Portfolio Website (Otter-Side)", type: "web" },
-        { name: "Industry Expert Interview Report", type: "report" }
+        { name: "Industry Expert Interview Report", type: "report" },
+        { name: "CST 349 Group Project Video (Industry & General Presentations)", type: "video" }
       ]
     },
-    interviewReport
+    interviewReport,
+    groupProjectVideos: [
+      {
+        id: "2FV0DpzJD2c",
+        title: "The Evolution and Impact of Smart Glasses - Industry",
+        category: "Industry Perspective",
+        channel: "Dr. Huitzil",
+        url: "https://youtu.be/2FV0DpzJD2c?is=Bnw2fJu65IDBg9cI",
+        embedUrl: "https://www.youtube-nocookie.com/embed/2FV0DpzJD2c",
+        description: "Group research presentation analyzing smart glasses adoption across industrial sectors, enterprise workflows, augmented reality field maintenance, and ergonomic/infrastructure hurdles in enterprise deployment."
+      },
+      {
+        id: "s53R9F46mM0",
+        title: "The Evolution and Impact of Smart Glasses - General",
+        category: "General Presentation",
+        channel: "Dr. Huitzil",
+        url: "https://youtu.be/s53R9F46mM0?is=CWOE_iYUWgbbjBGB",
+        embedUrl: "https://www.youtube-nocookie.com/embed/s53R9F46mM0",
+        description: "Group research presentation examining the broad history and consumer evolution of smart glass technology, optical heads-up displays, human-computer interaction, privacy ethics, accessibility benefits, and societal impacts."
+      }
+    ]
   },
 
   // Fall 2026 - Term B (Planned)

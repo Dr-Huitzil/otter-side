@@ -251,12 +251,22 @@ const Navbar = () => {
 
                 <div className={styles.dropdownFooter}>
                   <Link
+                    to="/courses/cst-300"
+                    className={styles.footerHighlightLink}
+                    onClick={() => setDropdownOpen(false)}
+                    style={{ marginBottom: '6px' }}
+                  >
+                    <span>
+                      Read CST 300 GWAR Ethics Paper &rarr;
+                    </span>
+                  </Link>
+                  <Link
                     to="/courses/cst-349"
                     className={styles.footerHighlightLink}
                     onClick={() => setDropdownOpen(false)}
                   >
                     <span>
-                      Jump to CST 349 Industry Expert Interview Report &rarr;
+                      View CST 349 Interview Report &amp; Group Videos &rarr;
                     </span>
                   </Link>
                 </div>

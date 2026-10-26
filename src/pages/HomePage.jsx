@@ -158,30 +158,29 @@ const HomePage = () => {
               <h3 className={styles.currentCourseTitle}>{course.title}</h3>
               <p className={styles.currentCourseDesc}>{course.description}</p>
 
-              {/* Special highlight for CST 349 (Interview Report) */}
+              {/* Special highlight for CST 349 (Interview Report & Group Video) */}
               {course.code === "CST 349" && course.interviewReport && (
                 <div className={styles.interviewHighlightBox}>
                   <div>
                     <h4 className={styles.highlightHeading}>
-                      Industry Expert Interview Report
+                      Interview Report & Group Project Video
                     </h4>
                     <p className={styles.highlightText}>
-                      {course.interviewReport.summary}
+                      {course.interviewReport.summary} Featuring group research presentations on <em>The Evolution and Impact of Smart Glasses</em>.
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Special highlight for CST 300 (GWAR Portfolio) */}
-              {course.code === "CST 300" && course.finalProject && (
+              {/* Special highlight for CST 300 (GWAR Ethics Paper) */}
+              {course.code === "CST 300" && (
                 <div className={styles.gwarHighlightBox}>
                   <div>
                     <h4 className={styles.highlightHeadingTeal}>
                       Graduation Writing Assessment Requirement (GWAR)
                     </h4>
                     <p className={styles.highlightText}>
-                      {course.finalProject.title} —{" "}
-                      {course.finalProject.description}
+                      <strong>Ethics Analysis Paper:</strong> <em>"The Devil’s Got Your Number Tonight: Are Insecure Password Workarounds Ethically Justified?"</em> — Examining healthcare EHR authentication friction, Act Utilitarianism, and Deontological Ethics.
                     </p>
                   </div>
                 </div>

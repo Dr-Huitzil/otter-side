@@ -17,15 +17,22 @@ import {
   FileText,
   Compass,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Video,
+  Scale,
+  KeyRound,
+  Radio,
+  Sparkles
 } from 'lucide-react';
 import { csumbCourses } from '@/data/csumbCourses';
 import styles from './CourseDetailPage.module.css';
 
 const CourseDetailPage = () => {
   const { slug } = useParams();
-  const [rawViewOpen, setRawViewOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [interviewRawOpen, setInterviewRawOpen] = useState(false);
+  const [interviewCopied, setInterviewCopied] = useState(false);
+  const [ethicsRawOpen, setEthicsRawOpen] = useState(false);
+  const [ethicsCopied, setEthicsCopied] = useState(false);
 
   const currentIndex = csumbCourses.findIndex(
     (c) => c.slug.toLowerCase() === slug?.toLowerCase() || c.code.toLowerCase().replace(' ', '-') === slug?.toLowerCase()
@@ -42,11 +49,19 @@ const CourseDetailPage = () => {
   const isCurrent = course.status === 'In Progress';
   const isCompleted = course.status === 'Completed';
 
-  const handleCopyRaw = () => {
+  const handleCopyInterviewRaw = () => {
     if (course.interviewReport?.rawMarkdown) {
       navigator.clipboard.writeText(course.interviewReport.rawMarkdown);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2200);
+      setInterviewCopied(true);
+      setTimeout(() => setInterviewCopied(false), 2200);
+    }
+  };
+
+  const handleCopyEthicsRaw = () => {
+    if (course.ethicsPaper?.rawMarkdown) {
+      navigator.clipboard.writeText(course.ethicsPaper.rawMarkdown);
+      setEthicsCopied(true);
+      setTimeout(() => setEthicsCopied(false), 2200);
     }
   };
 
@@ -153,6 +168,426 @@ const CourseDetailPage = () => {
         </div>
       </section>
 
+      {/* CST 300 Specific Section: Full Ethics Analysis Paper */}
+      {course.code === 'CST 300' && course.ethicsPaper && (
+        <section id="ethics-paper" className={`${styles.ethicsCard} hud-surface`}>
+          {/* Header */}
+          <div className={styles.ethicsHeader}>
+            <div className={styles.ethicsHeaderLeft}>
+              <span className="pill pill-gold">GWAR ETHICS ANALYSIS &bull; CST 300</span>
+              <h2 className={`serif-header ${styles.ethicsTitle}`}>
+                {course.ethicsPaper.title}
+              </h2>
+              <div className={styles.ethicsDocSubtitle}>
+                {course.ethicsPaper.subtitle}
+              </div>
+              <p className={styles.ethicsSubtitle}>
+                {course.ethicsPaper.summary}
+              </p>
+            </div>
+
+            <div className={styles.ethicsHeaderRight}>
+              <button
+                type="button"
+                onClick={() => setEthicsRawOpen(!ethicsRawOpen)}
+                className={styles.headerToggleBtn}
+                title="Toggle raw text viewer"
+              >
+                <Code size={15} />
+                <span>{ethicsRawOpen ? 'Hide Source Paper' : 'View Raw Paper (.txt)'}</span>
+                {ethicsRawOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Paper Meta Grid */}
+          <div className={styles.ethicsMetaGrid}>
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <FileText size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Author & Candidate</span>
+                <span className={styles.metaValue}>{course.ethicsPaper.author}</span>
+              </div>
+            </div>
+
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <BookOpen size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Course & Date</span>
+                <span className={styles.metaValue}>{course.ethicsPaper.date} &bull; CST 300</span>
+              </div>
+            </div>
+
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <Scale size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Ethical Frameworks</span>
+                <span className={styles.metaValue}>Act Utilitarianism vs. Deontology</span>
+              </div>
+            </div>
+
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <ShieldCheck size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Regulatory Domain</span>
+                <span className={styles.metaValue}>HITECH Act & HIPAA Security Rule</span>
+              </div>
+            </div>
+
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <KeyRound size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Focal Tension</span>
+                <span className={styles.metaValue}>Password Workarounds vs. EHR Audits</span>
+              </div>
+            </div>
+
+            <div className={styles.metaItem}>
+              <div className={styles.ethicsMetaIconWrap}>
+                <Radio size={18} />
+              </div>
+              <div>
+                <span className={styles.metaLabel}>Proposed Solution</span>
+                <span className={styles.metaValue}>RFID Smart Badges + Enterprise SSO</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Jump Navigation Bar */}
+          <div className={styles.ethicsJumpNav}>
+            <span className={styles.jumpNavLabel}>Jump to Section:</span>
+            <a href="#ethics-intro" className={styles.ethicsJumpNavLink}>01. Background</a>
+            <a href="#ethics-stakeholders" className={styles.ethicsJumpNavLink}>02. Stakeholder Analysis</a>
+            <a href="#ethics-frameworks" className={styles.ethicsJumpNavLink}>03. Utilitarian vs Deontology</a>
+            <a href="#ethics-position" className={styles.ethicsJumpNavLink}>04. Student Stance</a>
+            <a href="#ethics-recommendation" className={styles.ethicsJumpNavLink}>05. Engineering Solution</a>
+            <a href="#ethics-references" className={styles.ethicsJumpNavLink}>06. References</a>
+            <button
+              type="button"
+              onClick={() => setEthicsRawOpen(true)}
+              className={styles.ethicsJumpNavLink}
+              style={{ background: 'none', cursor: 'pointer' }}
+            >
+              Raw Paper Text
+            </button>
+          </div>
+
+          {/* Collapsible Raw Source Drawer */}
+          {ethicsRawOpen && (
+            <div className={styles.rawSourceDrawer}>
+              <div className={styles.rawSourceHeader}>
+                <div className={styles.rawSourceMeta}>
+                  <Code size={16} color="var(--accent-teal-bright)" />
+                  <strong>theDevilsGotYourNumberTonight.txt</strong>
+                  <span>&bull;</span>
+                  <span>Academic Essay Transcript (Full Submission)</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopyEthicsRaw}
+                  className={styles.copyCodeBtn}
+                >
+                  {ethicsCopied ? (
+                    <>
+                      <Check size={14} color="var(--accent-teal-bright)" />
+                      <span>Copied to Clipboard!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Copy Raw Text</span>
+                    </>
+                  )}
+                </button>
+              </div>
+              <pre className={styles.rawSourceCode}>
+                <code>{course.ethicsPaper.rawMarkdown}</code>
+              </pre>
+            </div>
+          )}
+
+          {/* Key Insights & Takeaways */}
+          <div className={styles.takeawaysSection}>
+            <h3 className={styles.subHeading}>Core Ethical Theses & Synthesis Pillars</h3>
+            <div className={styles.takeawaysList}>
+              {course.ethicsPaper.takeawaysDetailed.map((item, index) => (
+                <div key={index} className={styles.takeawayCard}>
+                  <div className={styles.takeawayTopRow}>
+                    <span className={styles.takeawayNumber}>{item.number}</span>
+                    <span className={styles.takeawayTag}>{item.tag}</span>
+                  </div>
+                  <h4 className={styles.takeawayTitle}>{item.title}</h4>
+                  <p className={styles.takeawayText}>{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Full Formal Paper Sections */}
+          <div className={styles.reportPartsContainer}>
+            {/* Part One: Introduction / Background */}
+            <article id="ethics-intro" className={styles.partCard}>
+              <div className={styles.partCardHeader}>
+                <div className={styles.partHeaderTitleGroup}>
+                  <span className={styles.partNumberBadge}>Section 01</span>
+                  <h3 className={styles.partTitle}>Introduction & Background</h3>
+                </div>
+                <span className={styles.partCategoryBadge}>Sociotechnical Dilemma</span>
+              </div>
+              <div className={styles.partBody}>
+                <p className={styles.partParagraph}>
+                  In modern healthcare facilities, digital infrastructure and physical patient care are absolutely linked. The ethical dilemma at the heart of healthcare computing centers on the intense tension between rigid electronic health record authentication protocols and the operational agility demanded of medical personnel during daily clinical care. When emergency physicians, intensive care nurses, and even general healthcare staff teams administer care, they interact with computerized physician order entry queue systems and automated medication dispensing cabinets that require frequent, multistep authentication. System friction such as aggressive session timeouts, mandatory alphanumeric password rotations, and latency prone workstations frequently create workflow bottlenecks. Confronted with the intense demand of patient care and clinical workload, healthcare workers tend to resort to informal workarounds, such as posting shared credentials on sticky notes.
+                </p>
+                <p className={styles.partParagraph}>
+                  The widespread adoption of Electronic Health Records has accelerated over the past two decades by federal digitization mandates like the HITECH Act. This mandate fundamentally modernized clinical documentation yet it also created an attack surface for healthcare networks (Zarour et al., 2026). This issue is important because it forces a conflict between two vital forces: the care of individual patients and the institutional duty to protect electronic Protected Health Information from catastrophic cyber threats. Healthcare organizations are high-value targets for global ransomware cartels. A single compromised endpoint credential can bring an entire hospital system to a standstill, delaying critical patient care (Zarour et al., 2026). However, overly defensive cybersecurity policies that treat clinicians like cyber threats introduces cognitive fatigue and operational paralysis, creating a scenario where defensive policies directly compromise clinic workflows.
+                </p>
+                <p className={styles.partParagraph}>
+                  Historically, early hospital computer systems operated on rudimentary, physical security where terminals were physically isolated within healthcare facilities. As healthcare networks transitioned to cloud-connected and distributed environments, regulated frameworks like HIPAA forced systems administrators to enforce complex Active Directory policies and multi-factor authentication across all endpoints. While these policies were technically born from an IT compliance perspective, they were rarely designed around the physical realities of healthcare facilities and their day-to-day workflow (Koppel et al., 2015). Empirical studies demonstrate that whenever digital security controls feel fragmented, slow, or misaligned with clinical velocity, frontline staff do not submit to friction, they create bypasses to maintain the flow of the healthcare floor (Blijleven et al., 2022; Büscher et al., 2025). Over time what began as isolated shortcuts has evolved into widespread normalization of password workarounds and shadow IT across healthcare facilities.
+                </p>
+              </div>
+            </article>
+
+            {/* Part Two: Stakeholder Analysis */}
+            <article id="ethics-stakeholders" className={styles.partCard}>
+              <div className={styles.partCardHeader}>
+                <div className={styles.partHeaderTitleGroup}>
+                  <span className={styles.partNumberBadge}>Section 02</span>
+                  <h3 className={styles.partTitle}>Stakeholder Analysis</h3>
+                </div>
+                <span className={styles.partCategoryBadge}>Institutional Mandates</span>
+              </div>
+              <div className={styles.partBody}>
+                <p className={styles.partParagraph}>
+                  The debate over password workarounds divides into two primary stakeholder groups whose core institutional mandates operate in direct opposition to each other: medical staff, such as physicians, care nurses, and general staff directly responsible for patient care and clinical workflow, and IT and Compliance Officers, which make up chief information security officers, network administrators, and HIPAA compliance auditors tasked with safeguarding infrastructure integrity and regulatory posture.
+                </p>
+
+                <div className={styles.stakeholdersGrid}>
+                  {course.ethicsPaper.stakeholders.map((s) => (
+                    <div key={s.id} className={styles.stakeholderCard}>
+                      <div className={styles.stakeholderCardHeader}>
+                        <div>
+                          <h4 className={styles.stakeholderRoleTitle}>{s.title}</h4>
+                          <span className={styles.stakeholderFrameworkBadge}>Ethical Framework: {s.framework}</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.stakeholderField}>
+                        <strong>Core Values:</strong>
+                        <span>{s.values}</span>
+                      </div>
+
+                      <div className={styles.stakeholderField}>
+                        <strong>Stakeholder Position:</strong>
+                        <span>{s.position}</span>
+                      </div>
+
+                      <div className={styles.stakeholderField}>
+                        <strong>Substantiating Claims:</strong>
+                        <ul className={styles.claimsList}>
+                          {s.claims.map((claim, cIdx) => (
+                            <li key={cIdx} className={styles.claimItem}>
+                              <span className={styles.claimTypePill}>Claim of {claim.type}</span>
+                              <span>{claim.text}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+
+            {/* Part Three: Argument Question & Ethical Frameworks */}
+            <article id="ethics-frameworks" className={styles.partCard}>
+              <div className={styles.partCardHeader}>
+                <div className={styles.partHeaderTitleGroup}>
+                  <span className={styles.partNumberBadge}>Section 03</span>
+                  <h3 className={styles.partTitle}>Argument Question & Ethical Frameworks</h3>
+                </div>
+                <span className={styles.partCategoryBadge}>Utilitarianism vs. Deontology</span>
+              </div>
+
+              {/* Highlighted Question Box */}
+              <div className={styles.questionCallout}>
+                <div className={styles.questionLabel}>
+                  <Sparkles size={16} />
+                  <span>Central Ethical Question</span>
+                </div>
+                <p className={styles.questionText}>
+                  "Should the use of insecure password workarounds and shadow IT by clinical staff be considered an ethically justified practice to ensure rapid patient care?"
+                </p>
+              </div>
+
+              <div className={styles.frameworksGrid}>
+                {/* Medical Staff Argument: Utilitarianism */}
+                <div className={styles.frameworkCard}>
+                  <div className={styles.frameworkHeader}>
+                    <h4 className={styles.frameworkName}>Act Utilitarianism</h4>
+                    <span className={styles.frameworkPhilosophers}>Jeremy Bentham & John Stuart Mill</span>
+                  </div>
+
+                  <p className={styles.partParagraph}>
+                    The argument of the medical staff is grounded in Act Utilitarianism, an ethical theory developed systematically by philosophers Jeremy Bentham and John Stuart Mill. Utilitarianism evaluates the morality of any given action strictly through its outcome, holding that an act is morally right if and only it produces the greatest balance of net pleasure, well-being, or harm reduction for the greatest number of affected individuals. In a utilitarian calculus, formal rules and procedural constraints are secondary to the concrete consequences of an action in the physical world.
+                  </p>
+
+                  <div className={styles.famousQuoteBlock}>
+                    <p className={styles.famousQuoteText}>
+                      "Do you want my password or a dead patient?"
+                    </p>
+                    <span className={styles.famousQuoteSource}>
+                      &mdash; Clinical staff interviewed by Koppel et al. (2015)
+                    </span>
+                  </div>
+
+                  <p className={styles.partParagraph}>
+                    <strong>Argument:</strong> Bypassing complex IT logins generates the greatest overall good by ensuring timely medical interventions that save lives or reduce suffering holding a definitive higher utility than preventing a hypothetical network breach. Bedside clinicians argue that the immediate, tangible benefit of administering a critical medication or viewing an urgent lab results right away far outweighs the abstract risk of an unauthorized cyber event. From a utilitarian standpoint, preventable patient harm is an irreversible and catastrophic outcome, whereas network vulnerabilities are manageable risks that IT teams can isolate, audit, and remediate after the fact.
+                  </p>
+
+                  <p className={styles.partParagraph}>
+                    <strong>Course of Action:</strong> Permit temporary bypass of complex authentication policies during critical clinical workflows to ensure patient treatment is never delayed. Establish formal emergency override options, longer workstation timeout intervals in restricted floor areas, or shared team workstations.
+                  </p>
+
+                  <div className={styles.stakesGrid}>
+                    <div className={styles.stakesCol}>
+                      <span className={`${styles.stakesColTitle} ${styles.stakesGains}`}>Stake Gains:</span>
+                      <span>Uninterrupted workflow, rapid emergency intervention, and reduced burnout.</span>
+                    </div>
+                    <div className={styles.stakesCol}>
+                      <span className={`${styles.stakesColTitle} ${styles.stakesRisks}`}>Stake Risks:</span>
+                      <span>Disciplinary termination, loss of medical licensing, and federal HIPAA liability.</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* IT & Compliance Argument: Deontology */}
+                <div className={styles.frameworkCard}>
+                  <div className={styles.frameworkHeader}>
+                    <h4 className={styles.frameworkName}>Deontological Ethics</h4>
+                    <span className={styles.frameworkPhilosophers}>Immanuel Kant (Groundwork of the Metaphysics of Morals)</span>
+                  </div>
+
+                  <p className={styles.partParagraph}>
+                    The position of IT administrators and compliance officers is founded upon Deontological Ethics, most prominently articulated by Immanuel Kant in the <em>Groundwork of the Metaphysics of Morals</em>. Deontology asserts that actions are inherently moral or immoral based on adherence to universal duties and moral laws, completely independent of the empirical consequences they produce. Under Kant’s Categorical Imperative, an individual must act only according to maxims that could be willed as universal laws without contradiction, and persons must always be treated as ends in themselves rather than mere means to an end.
+                  </p>
+
+                  <div className={styles.famousQuoteBlock}>
+                    <p className={styles.famousQuoteText}>
+                      "Act only according to that maxim whereby you can at the same time will that it should become a universal law."
+                    </p>
+                    <span className={styles.famousQuoteSource}>
+                      &mdash; Immanuel Kant, Categorical Imperative
+                    </span>
+                  </div>
+
+                  <p className={styles.partParagraph}>
+                    <strong>Argument:</strong> Applying deontological tenets, IT officers assert that protecting patient privacy and institutional confidentiality is a categorical, non-negotiable duty. When a patient enters a healthcare facility, they entrust their most sensitive medical, genetic, and biographical data to the institution under an implicit universalizable rule of integrity: If every employee treated access controls as an optional whenever convenient, the entire security infrastructure would collapse into chaos (Njenga et al., 2024; Yeng et al., 2022). Furthermore, bypassing authentication treats the collective patient population merely as a means to achieve personal operational convenience, which is a direct violation of Kantian duty.
+                  </p>
+
+                  <p className={styles.partParagraph}>
+                    <strong>Course of Action:</strong> Uncompromising enforcement of role-based access control (RBAC), multi-factor authentication (MFA), and automated audit logging, combined with progressive disciplinary measures and mandatory remediation.
+                  </p>
+
+                  <div className={styles.stakesGrid}>
+                    <div className={styles.stakesCol}>
+                      <span className={`${styles.stakesColTitle} ${styles.stakesGains}`}>Stake Gains:</span>
+                      <span>Verified regulatory compliance with HIPAA mandates and ransomware resilience.</span>
+                    </div>
+                    <div className={styles.stakesCol}>
+                      <span className={`${styles.stakesColTitle} ${styles.stakesRisks}`}>Stake Risks:</span>
+                      <span>Alienation of clinical partners, systemic shadow IT, and moral injury from delayed care.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            {/* Part Four: Student Position */}
+            <article id="ethics-position" className={styles.partCard}>
+              <div className={styles.partCardHeader}>
+                <div className={styles.partHeaderTitleGroup}>
+                  <span className={styles.partNumberBadge}>Section 04</span>
+                  <h3 className={styles.partTitle}>Student Position & Ethical Synthesis</h3>
+                </div>
+                <span className={styles.partCategoryBadge}>Author Perspective</span>
+              </div>
+
+              <div className={styles.studentStanceCard}>
+                <div className={styles.studentStanceHeader}>
+                  <Scale size={24} color="var(--accent-teal-bright)" />
+                  <h4 className={styles.studentStanceTitle}>Author Opinion & Moral Alignment</h4>
+                </div>
+
+                <p className={styles.opinionQuote}>
+                  <em>"{course.ethicsPaper.studentPosition.opinion}"</em>
+                </p>
+
+                <p className={styles.partParagraph}>
+                  {course.ethicsPaper.studentPosition.alignment}
+                </p>
+              </div>
+
+              {/* Recommendation Blueprint */}
+              <div id="ethics-recommendation" className={styles.recommendationCard}>
+                <div className={styles.recommendationHeader}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <Radio size={22} color="var(--accent-gold)" />
+                    <h4 className={styles.recommendationTitle}>
+                      Engineering Compromise: Dual-Factor RFID Proximity Authentication
+                    </h4>
+                  </div>
+                  <div className={styles.techPillsRow}>
+                    <span className={styles.techPill}>Wearable Smart Badges</span>
+                    <span className={styles.techPill}>Enterprise SSO</span>
+                    <span className={styles.techPill}>Walk-Away Proximity Lock</span>
+                    <span className={styles.techPill}>HIPAA Audit Trail</span>
+                  </div>
+                </div>
+                <p className={styles.recommendationText}>
+                  {course.ethicsPaper.studentPosition.recommendation}
+                </p>
+              </div>
+            </article>
+
+            {/* Part Five: References */}
+            <article id="ethics-references" className={styles.referencesCard}>
+              <div className={styles.referencesHeader}>
+                <BookOpen size={20} color="var(--accent-teal-bright)" />
+                <h3 className={styles.referencesTitle}>Academic References (APA Format)</h3>
+              </div>
+              <ul className={styles.referencesList}>
+                {course.ethicsPaper.references.map((ref, rIdx) => (
+                  <li key={rIdx} className={styles.referenceItem}>
+                    <strong>{ref.authors}</strong> ({ref.year}). {ref.title}. <em>{ref.journal}</em>.
+                    {ref.doi && (
+                      <a
+                        href={ref.doi}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.doiLink}
+                      >
+                        <span>{ref.doi}</span>
+                        <ExternalLink size={11} />
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+      )}
+
       {/* CST 349 Specific Section: Industry Expert Interview Report */}
       {course.code === 'CST 349' && course.interviewReport && (
         <section id="interview-report" className={`${styles.interviewCard} hud-surface`}>
@@ -175,13 +610,13 @@ const CourseDetailPage = () => {
               {course.interviewReport.rawMarkdown && (
                 <button
                   type="button"
-                  onClick={() => setRawViewOpen(!rawViewOpen)}
+                  onClick={() => setInterviewRawOpen(!interviewRawOpen)}
                   className={styles.headerToggleBtn}
                   title="Toggle raw source code viewer"
                 >
                   <Code size={15} />
-                  <span>{rawViewOpen ? 'Hide Source Code' : 'View Source (.js)'}</span>
-                  {rawViewOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                  <span>{interviewRawOpen ? 'Hide Source Code' : 'View Source (.js)'}</span>
+                  {interviewRawOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
               )}
             </div>
@@ -258,10 +693,11 @@ const CourseDetailPage = () => {
             <a href="#part-3" className={styles.jumpNavLink}>03. Personal Reflection</a>
             <a href="#part-4" className={styles.jumpNavLink}>04. Future Steps</a>
             <a href="#ilp-connection" className={styles.jumpNavLink}>ILP Pathway Link</a>
+            <a href="#group-project-videos" className={styles.jumpNavLink}>Group Project Video &darr;</a>
             {course.interviewReport.rawMarkdown && (
               <button
                 type="button"
-                onClick={() => setRawViewOpen(true)}
+                onClick={() => setInterviewRawOpen(true)}
                 className={styles.jumpNavLink}
                 style={{ background: 'none', cursor: 'pointer' }}
               >
@@ -271,7 +707,7 @@ const CourseDetailPage = () => {
           </div>
 
           {/* Raw Source Drawer (Collapsible) */}
-          {rawViewOpen && course.interviewReport.rawMarkdown && (
+          {interviewRawOpen && course.interviewReport.rawMarkdown && (
             <div id="raw-source" className={styles.rawSourceDrawer}>
               <div className={styles.rawSourceHeader}>
                 <div className={styles.rawSourceMeta}>
@@ -282,10 +718,10 @@ const CourseDetailPage = () => {
                 </div>
                 <button
                   type="button"
-                  onClick={handleCopyRaw}
+                  onClick={handleCopyInterviewRaw}
                   className={styles.copyCodeBtn}
                 >
-                  {copied ? (
+                  {interviewCopied ? (
                     <>
                       <Check size={14} color="var(--accent-teal-bright)" />
                       <span>Copied to Clipboard!</span>
@@ -511,6 +947,58 @@ const CourseDetailPage = () => {
         </section>
       )}
 
+      {/* CST 349 Group Project Video Section */}
+      {course.code === 'CST 349' && course.groupProjectVideos && course.groupProjectVideos.length > 0 && (
+        <section id="group-project-videos" className={`${styles.videoSection} hud-surface`}>
+          <div className={styles.videoSectionHeader}>
+            <span className="pill pill-gold">PROSEMINAR DELIVERABLE &bull; CST 349</span>
+            <h2 className={`serif-header ${styles.videoSectionTitle}`}>
+              Group Project Video: The Evolution and Impact of Smart Glasses
+            </h2>
+            <p className={styles.videoSectionSubtitle}>
+              Collaborative research presentations examining wearable augmented reality hardware, enterprise workflows, and general societal implications. Both presentation components—Industry Perspective and General Overview—are cataloged below.
+            </p>
+          </div>
+
+          <div className={styles.videosGrid}>
+            {course.groupProjectVideos.map((video) => (
+              <div key={video.id} className={styles.videoCard}>
+                <div className={styles.videoEmbedWrap}>
+                  <iframe
+                    className={styles.videoIframe}
+                    src={video.embedUrl}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <div className={styles.videoCardBody}>
+                  <div className={styles.videoCardMetaRow}>
+                    <span className={styles.videoCategoryPill}>{video.category}</span>
+                    <span className={styles.videoChannelTag}>
+                      <Video size={14} />
+                      <span>{video.channel} &bull; YouTube</span>
+                    </span>
+                  </div>
+                  <h3 className={styles.videoCardTitle}>{video.title}</h3>
+                  <p className={styles.videoCardDesc}>{video.description}</p>
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.videoWatchLink}
+                  >
+                    <span>Watch on YouTube</span>
+                    <ExternalLink size={13} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Final Project / Coursework Artifacts Section */}
       {course.finalProject && (
         <section className={`${styles.projectCard} hud-surface`}>
@@ -534,27 +1022,41 @@ const CourseDetailPage = () => {
               <div className={styles.artifactsGrid}>
                 {course.finalProject.artifacts.map((art, idx) => {
                   const isInterviewReport = art.name.toLowerCase().includes('interview');
+                  const isEthicsPaper = art.name.toLowerCase().includes('ethics') || art.name.toLowerCase().includes('paper');
+                  const isVideo = art.name.toLowerCase().includes('video');
+
                   return (
                     <div key={idx} className={styles.artifactBox}>
                       <div>
                         <span className={styles.artifactName}>{art.name}</span>
                         <span className={styles.artifactType}>
-                          {isInterviewReport ? 'Primary Course Deliverable' : 'Documented Course Artifact'}
+                          {isInterviewReport || isEthicsPaper || isVideo ? 'Primary Course Deliverable' : 'Documented Course Artifact'}
                         </span>
+
                         {isInterviewReport && (
                           <a
                             href="#interview-report"
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px',
-                              marginTop: '8px',
-                              fontSize: '0.74rem',
-                              fontFamily: "'Fira Code', monospace",
-                              color: 'var(--accent-gold)'
-                            }}
+                            className={styles.artifactJumpLink}
                           >
                             <span>Read Full Report Above &uarr;</span>
+                          </a>
+                        )}
+
+                        {isEthicsPaper && (
+                          <a
+                            href="#ethics-paper"
+                            className={styles.artifactJumpLink}
+                          >
+                            <span>Read Full Paper Above &uarr;</span>
+                          </a>
+                        )}
+
+                        {isVideo && (
+                          <a
+                            href="#group-project-videos"
+                            className={styles.artifactJumpLink}
+                          >
+                            <span>Watch Presentation Videos Above &uarr;</span>
                           </a>
                         )}
                       </div>
