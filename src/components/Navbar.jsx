@@ -194,7 +194,7 @@ const Navbar = () => {
                     {/* Current Active Courses */}
                     <div className={styles.colHeadingRow}>
                       <span className={styles.colHeading}>
-                        In Progress (Fall 2026 Term A)
+                        In Progress (Fall 2026 Term B)
                       </span>
                     </div>
                     <div className={styles.courseItemsList}>
@@ -386,7 +386,7 @@ const Navbar = () => {
                     color: "var(--accent-gold)",
                   }}
                 >
-                  IN PROGRESS (FALL 2026 TERM A):
+                  IN PROGRESS (FALL 2026 TERM B):
                 </div>
                 {currentCourses.map((c) => (
                   <Link

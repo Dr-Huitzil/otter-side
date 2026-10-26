@@ -594,7 +594,7 @@ const CourseDetailPage = () => {
           {/* Header */}
           <div className={styles.interviewHeader}>
             <div className={styles.interviewHeaderLeft}>
-              <span className="pill pill-gold">PROSEMINAR DELIVERABLE &bull; CST 349</span>
+              <span className="pill pill-gold">PROSEMINAR PROJECT &bull; CST 349</span>
               <h2 className={`serif-header ${styles.interviewTitle}`}>
                 {course.interviewReport.title || 'A Thousand Unclimbed Trees'}
               </h2>
@@ -951,7 +951,7 @@ const CourseDetailPage = () => {
       {course.code === 'CST 349' && course.groupProjectVideos && course.groupProjectVideos.length > 0 && (
         <section id="group-project-videos" className={`${styles.videoSection} hud-surface`}>
           <div className={styles.videoSectionHeader}>
-            <span className="pill pill-gold">PROSEMINAR DELIVERABLE &bull; CST 349</span>
+            <span className="pill pill-gold">PROSEMINAR PROJECT &bull; CST 349</span>
             <h2 className={`serif-header ${styles.videoSectionTitle}`}>
               Group Project Video: The Evolution and Impact of Smart Glasses
             </h2>
@@ -1030,7 +1030,7 @@ const CourseDetailPage = () => {
                       <div>
                         <span className={styles.artifactName}>{art.name}</span>
                         <span className={styles.artifactType}>
-                          {isInterviewReport || isEthicsPaper || isVideo ? 'Primary Course Deliverable' : 'Documented Course Artifact'}
+                          {isInterviewReport || isEthicsPaper || isVideo ? 'Core Course Project' : 'Documented Course Artifact'}
                         </span>
 
                         {isInterviewReport && (

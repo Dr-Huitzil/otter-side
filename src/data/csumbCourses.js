@@ -41,13 +41,13 @@ export const csumbCourses = [
     }
   },
 
-  // Fall 2026 - Term A (Currently In Progress)
+  // Fall 2026 - Term A (Completed)
   {
     code: "CST 300",
     slug: "cst-300",
     title: "Graduation Writing Assessment for Computing and Design",
     units: 3,
-    status: "In Progress",
+    status: "Completed",
     term: "Fall 2026 - Term A",
     termOrder: 1,
     category: "CS Online Course Pathway",
@@ -57,7 +57,7 @@ export const csumbCourses = [
     outcomesMatched: ["MLO 5: Professionalism, Ethics & Communication"],
     finalProject: {
       title: "Technical Writing Portfolio & Computing Ethics Synthesis",
-      status: "In Progress",
+      status: "Completed",
       description: "Comprehensive technical document analyzing emerging computing dilemmas, professional engineering ethics, and peer-reviewed technical research methodologies.",
       artifacts: [
         { name: "Ethics Analysis Paper: 'The Devil’s Got Your Number Tonight'", type: "document" },
@@ -71,7 +71,7 @@ export const csumbCourses = [
     slug: "cst-349",
     title: "Computer Science Proseminar",
     units: 2,
-    status: "In Progress",
+    status: "Completed",
     term: "Fall 2026 - Term A",
     termOrder: 1,
     category: "CS Online Course Pathway",
@@ -81,7 +81,7 @@ export const csumbCourses = [
     outcomesMatched: ["MLO 5: Professionalism, Ethics & Communication"],
     finalProject: {
       title: "Individual Learning Plan (ILP), Industry Interview & Group Video",
-      status: "In Progress",
+      status: "Completed",
       description: "Long-term curated portfolio tracking progression across all CS degree milestones toward CST 499 Capstone, accompanied by an informational interview with an established computing professional and collaborative group research videos exploring smart glasses.",
       artifacts: [
         { name: "ILP Portfolio Website (Otter-Side)", type: "web" },
@@ -112,13 +112,13 @@ export const csumbCourses = [
     ]
   },
 
-  // Fall 2026 - Term B (Planned)
+  // Fall 2026 - Term B (Currently In Progress)
   {
     code: "CST 334",
     slug: "cst-334",
     title: "Operating Systems",
     units: 4,
-    status: "Planned",
+    status: "In Progress",
     term: "Fall 2026 - Term B",
     termOrder: 2,
     category: "CS Online Course Pathway",
@@ -126,7 +126,7 @@ export const csumbCourses = [
     outcomesMatched: ["MLO 3: Systems Architecture & Networks"],
     finalProject: {
       title: "Multi-threaded Process Scheduler & Memory Simulation",
-      status: "Planned",
+      status: "In Progress",
       description: "Low-level systems program simulating preemptive CPU process scheduling and virtual memory page replacement algorithms.",
       artifacts: []
     }

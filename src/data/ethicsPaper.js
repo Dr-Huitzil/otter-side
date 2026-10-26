@@ -69,8 +69,8 @@ Zarour, M., et al. (2026). A comprehensive survey of cybersecurity threats and d
  */
 export const ethicsPaper = {
   title: "The Devil’s Got Your Number Tonight: Are Insecure Password Workarounds Ethically Justified?",
-  subtitle: "Ethics Analysis Paper & Graduation Writing Assessment Requirement (GWAR) Deliverable",
-  deliverableType: "CST 300 Ethics Analysis Deliverable",
+  subtitle: "Ethics Analysis Paper & Graduation Writing Assessment Requirement (GWAR) Project",
+  assignmentType: "CST 300 Ethics Analysis Assignment",
   courseCode: "CST 300",
   courseTitle: "Graduation Writing Assessment for Computing and Design",
   author: "Ivan Alier-Reyes",

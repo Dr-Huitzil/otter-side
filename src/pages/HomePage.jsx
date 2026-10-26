@@ -125,15 +125,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Spotlight: Current Courses (Fall 2026 - Term A Only) */}
+      {/* Spotlight: Current Course (Fall 2026 - Term B) */}
       <section className={styles.currentSection} id="current-courses">
         <div className={styles.sectionHeading}>
           <h2 className={`serif-header ${styles.sectionTitle}`}>
-            Current Term Courses (Fall 2026 - Term A)
+            Current Term Course (Fall 2026 - Term B)
           </h2>
           <p className={styles.sectionSubtitle}>
-            Currently enrolled in the 5-unit writing assessment and proseminar
-            block for Fall 2026 Term A.
+            Currently active in the 4-unit systems architecture, concurrency, and memory management sequence (CST 334: Operating Systems) for Fall 2026 Term B.
           </p>
         </div>
 
@@ -148,7 +147,7 @@ const HomePage = () => {
                   <span className={styles.currentCourseCode}>
                     {course.code}
                   </span>
-                  <span className="pill pill-gold">{course.term}</span>
+                  <span className="pill pill-gold">{course.term} &bull; ACTIVE</span>
                 </div>
                 <span className={styles.currentUnits}>
                   {course.units} Units
@@ -158,29 +157,14 @@ const HomePage = () => {
               <h3 className={styles.currentCourseTitle}>{course.title}</h3>
               <p className={styles.currentCourseDesc}>{course.description}</p>
 
-              {/* Special highlight for CST 349 (Interview Report & Group Video) */}
-              {course.code === "CST 349" && course.interviewReport && (
-                <div className={styles.interviewHighlightBox}>
-                  <div>
-                    <h4 className={styles.highlightHeading}>
-                      Interview Report & Group Project Video
-                    </h4>
-                    <p className={styles.highlightText}>
-                      {course.interviewReport.summary} Featuring group research presentations on <em>The Evolution and Impact of Smart Glasses</em>.
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Special highlight for CST 300 (GWAR Ethics Paper) */}
-              {course.code === "CST 300" && (
+              {course.finalProject && (
                 <div className={styles.gwarHighlightBox}>
                   <div>
                     <h4 className={styles.highlightHeadingTeal}>
-                      Graduation Writing Assessment Requirement (GWAR)
+                      Term B Milestone Project
                     </h4>
                     <p className={styles.highlightText}>
-                      <strong>Ethics Analysis Paper:</strong> <em>"The Devil’s Got Your Number Tonight: Are Insecure Password Workarounds Ethically Justified?"</em> — Examining healthcare EHR authentication friction, Act Utilitarianism, and Deontological Ethics.
+                      <strong>{course.finalProject.title}:</strong> {course.finalProject.description}
                     </p>
                   </div>
                 </div>
@@ -194,6 +178,60 @@ const HomePage = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Showcase: Recently Completed Term Projects (Fall 2026 - Term A) */}
+      <section className={styles.recentProjectsSection} id="recent-projects">
+        <div className={styles.sectionHeading}>
+          <h2 className={`serif-header ${styles.sectionTitle}`}>
+            Recently Completed Projects (Fall 2026 - Term A)
+          </h2>
+          <p className={styles.sectionSubtitle}>
+            Key academic milestones and coursework projects completed in Fall 2026 Term A, fulfilling graduation writing and proseminar requirements.
+          </p>
+        </div>
+
+        <div className={styles.completedProjectsGrid}>
+          {/* CST 300 Completed Card */}
+          <div className={`${styles.completedProjectCard} hud-surface`}>
+            <div className={styles.completedProjectHeaderRow}>
+              <span className={styles.completedProjectCodePill}>CST 300 &bull; GWAR COMPLETED</span>
+              <span className="pill pill-purple">COMPLETED</span>
+            </div>
+            <h3 className={styles.completedProjectTitle}>
+              "The Devil’s Got Your Number Tonight: Are Insecure Password Workarounds Ethically Justified?"
+            </h3>
+            <p className={styles.completedProjectDesc}>
+              Academic ethics synthesis evaluating the tension between rigid EHR authentication protocols and emergency clinical care under Act Utilitarianism and Deontological Ethics, proposing RFID smart badges + SSO.
+            </p>
+            <div className={styles.currentCardFooter}>
+              <Link to="/courses/cst-300#ethics-paper" className="btn-hud">
+                <span>Read Full Ethics Paper</span>
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+
+          {/* CST 349 Completed Card */}
+          <div className={`${styles.completedProjectCard} hud-surface`}>
+            <div className={styles.completedProjectHeaderRow}>
+              <span className={styles.completedProjectCodePill}>CST 349 &bull; PROSEMINAR COMPLETED</span>
+              <span className="pill pill-purple">COMPLETED</span>
+            </div>
+            <h3 className={styles.completedProjectTitle}>
+              Industry Expert Interview Report &amp; Smart Glasses Group Videos
+            </h3>
+            <p className={styles.completedProjectDesc}>
+              Comprehensive informational interview with IT Executive Vicente Magaña (<em>"A Thousand Unclimbed Trees"</em>) paired with a 2-part research presentation series on <em>The Evolution and Impact of Smart Glasses</em>.
+            </p>
+            <div className={styles.currentCardFooter}>
+              <Link to="/courses/cst-349" className="btn-hud">
+                <span>Explore Report &amp; Videos</span>
+                <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -280,7 +318,7 @@ const HomePage = () => {
             <p className={styles.teaserDesc}>
               Every course in the official CS Online pathway has an established
               ILP profile ready for continuous documentation, syllabus outcomes,
-              and project deliverables through the CST 499 Capstone.
+              and coursework projects through the CST 499 Capstone.
             </p>
           </div>
           <Link to="/courses" className="btn-hud">

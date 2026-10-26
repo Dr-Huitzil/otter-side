@@ -14,7 +14,7 @@ export const studentProfile = {
     csumbBrand: "https://csumb.edu/communications/brand-guidelines-templates-and-resources/logo-guidelines/",
     csumbCatalog: "https://catalog.csumb.edu/preview_program.php?catoid=11&poid=2405&returnto=591"
   },
-  bio: `I am an undergraduate student in the Computer Science Online program at California State University, Monterey Bay. With a strong foundation in enterprise IT infrastructure and cybersecurity operations, I am expanding my technical scope into systems architecture, algorithmic problem-solving, and full-stack engineering. This Individual Learning Plan (ILP) portfolio documents my CS Online Course Pathway coursework, term deliverables, and progression toward CST 499 Capstone graduation.`,
+  bio: `I am an undergraduate student in the Computer Science Online program at California State University, Monterey Bay. With a strong foundation in enterprise IT infrastructure and cybersecurity operations, I am expanding my technical scope into systems architecture, algorithmic problem-solving, and full-stack engineering. This Individual Learning Plan (ILP) portfolio documents my CS Online Course Pathway coursework, term projects, and progression toward CST 499 Capstone graduation.`,
   goals: {
     academic: [
       "Earned associate degrees in Computer Science, Biology, Chemistry, Physics, and Engineering, alongside an active real estate license.",
@@ -32,14 +32,14 @@ export const studentProfile = {
   courses: {
     completed: [
       { code: "CST 336", title: "Internet Programming", units: 4, term: "Prior Term" },
-      { code: "CST 338", title: "Software Design", units: 4, term: "Prior Term" }
-    ],
-    inProgress: [
+      { code: "CST 338", title: "Software Design", units: 4, term: "Prior Term" },
       { code: "CST 300", title: "Graduation Writing Assessment for Computing and Design", units: 3, term: "Fall 2026 - Term A" },
       { code: "CST 349", title: "Computer Science Proseminar", units: 2, term: "Fall 2026 - Term A" }
     ],
+    inProgress: [
+      { code: "CST 334", title: "Operating Systems", units: 4, term: "Fall 2026 - Term B" }
+    ],
     planned: [
-      { code: "CST 334", title: "Operating Systems", units: 4, term: "Fall 2026 - Term B" },
       { code: "CST 363", title: "Introduction to Database Systems", units: 4, term: "Spring 2027 - Term A" },
       { code: "CST 462S", title: "Race, Gender, Class in the Digital World", units: 2, term: "Spring 2027 - Term B" },
       { code: "CST 328", title: "Digital Art and Design", units: 2, term: "Spring 2027 - Term B" },

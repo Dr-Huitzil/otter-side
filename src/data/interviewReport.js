@@ -56,7 +56,7 @@ In my CSUMB Software Engineering courses, I will treat AI coding assistants not 
 export const interviewReport = {
   title: "A Thousand Unclimbed Trees",
   subtitle: "Industry Expert Interview Report",
-  deliverableType: "CST 349 Proseminar Deliverable",
+  assignmentType: "CST 349 Proseminar Project",
   courseCode: "CST 349",
   courseTitle: "Computer Science Proseminar",
   interviewee: "Vicente Magaña",
